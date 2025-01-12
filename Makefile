@@ -44,20 +44,6 @@ LDFLAGS = -L$(SPDLOG_LIB) -L$(FMT_LIB) -L$(SFML_LIB) -L$(HOMEBREW_PREFIX)/lib -l
 BUILD_DIR := build
 TEST_BUILD_DIR := test_build
 
-# Main application source and object files
-SRC := src/main.cpp \
-       src/game/globals/globals.cpp \
-       src/game/core/game.cpp \
-       src/game/physics/physics.cpp \
-       src/game/camera/window.cpp \
-       src/game/utils/utils.cpp \
-       src/game/scenes/scenes.cpp \
-       assets/sprites/sprites.cpp \
-       assets/fonts/fonts.cpp \
-       assets/sound/sound.cpp \
-       assets/tiles/tiles.cpp \
-       libs/logging/log.cpp
-
 OBJ := $(SRC:%.cpp=$(BUILD_DIR)/%.o)
 
 # Test source and object files
@@ -99,18 +85,9 @@ install_deps:
 	@brew list yaml-cpp >/dev/null 2>&1 || (echo "Installing yaml-cpp..."; brew install yaml-cpp) 
 	@brew list catch2 >/dev/null 2>&1 || (echo "Installing catch2..."; brew install catch2)
 
-# Main application build target
-$(TARGET): $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $@ $(OBJ) $(LDFLAGS)
-
 # Test build target
 $(TEST_TARGET): $(TEST_OBJ)
 	$(CXX) $(TEST_CXXFLAGS) -o $@ $(TEST_OBJ) $(LDFLAGS)
-
-# Rule to build main object files
-$(BUILD_DIR)/%.o: %.cpp
-	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Rule to build test object files
 $(TEST_BUILD_DIR)/%.o: %.cpp
@@ -119,11 +96,7 @@ $(TEST_BUILD_DIR)/%.o: %.cpp
 
 # Clean up all build artifacts
 clean:
-	rm -rf $(BUILD_DIR) $(TEST_BUILD_DIR) $(TARGET) $(TEST_TARGET)
-
-# Run the application
-run: $(TARGET) COPY_CONFIG
-	./$(TARGET)
+	rm -rf $(TEST_BUILD_DIR) $(TEST_TARGET)
 
 # Run tests
 test: $(TEST_TARGET) COPY_CONFIG

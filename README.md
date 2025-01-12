@@ -72,23 +72,16 @@ Note: This template does not include a UI layer for customization. Changes must 
 2. Build the Project
 Open Visual Studio Code, navigate to the project directory, and run:
 ```bash
-  make
+  make test
 ```
 This will:
 
 -   Install Homebrew if missing.
 -   Install sfml, spdlog, and fmt via Homebrew.
 -   Compile and build the project executable.
+-   Run the game.
 
-3.1 Run the game ( run the tester )
-```bash
-  make test
-```
-3.2 Run the game ( run the actual )
-```bash
-  make run
-```
-4. Clean the Build
+3. Clean the Build
 Remove compiled files with:
 ```bash
   make clean
@@ -132,45 +125,10 @@ Remove compiled files with:
 -   fmt: Text formatting library for logging
 -   catch2: For testing purpooses
 
-## License
-
-This project is licensed under the MIT License.
-
-##  
-
 Note: Adjust file paths, include dependencies, and modify other sections based on your environment, as some systems may require manual setup for Homebrew or custom paths.
 ## Game Architecture Overview
 <img width="871" alt="Screenshot 2024-11-05 at 11 40 42 AM" src="https://github.com/user-attachments/assets/211ec582-6439-444b-9450-c1ea3210776f">
  
 <img width="1248" alt="Screenshot 2024-10-27 at 8 06 23 PM" src="https://github.com/user-attachments/assets/f664171a-9f20-40c7-9a09-7108944b6f8d">
  
-## How to Use the 2D Game Template
-This guide explains how to set up and start building your 2D game using the provided game template. Follow these steps to add scenes, manage constants, and integrate other game elements.
 
-1. Game Manager and Scene Management
-- Add Scenes: Use GameManager to manage all your game scenes (like IntroScene, GameplayScene, etc.). Each scene should inherit from the base Scene class, which includes virtual methods like update, draw, and handleEvents.
-
-2. Constants Management
-- Add New Constants: Define constants (like screen dimensions, game view settings, and scaling values) in the Constants namespace. This includes things like SCREEN_WIDTH, VIEW_SIZE_X, SCREEN_SCALE, etc.
-- Accessing Constants: To access these constants in other files, simply include the Constants.h file and refer to them as Constants::SCREEN_WIDTH, for example.
-
-3. MetaComponents Setup
-- Global Variables: Variables in the MetaComponents namespace—like mouseClickedPosition, globalTime, deltaTime, and clock—are meant to be global and accessible from any file without duplication.
-- Using MetaComponents: Access variables directly through MetaComponents to manage input, time, and the main window. For example, MetaComponents::globalTime provides the time since the game started, useful for animations or timed events.
-
-4. Sprites and 2D Components
-- Adding Sprites: Use the Sprite manage your game visuals
-- Visibility and Out-of-Bounds: The template includes functions to set sprites visible if within bounds. Leverage these checks to manage performance, hiding sprites when they’re completely offscreen; note that this only works inside a set view, where the entire window is the view.
-- Collision Handling: Collision detection functions in the Physics namespace help handle sprite collisions and movement. Use Physics::checkCollision(sprite1, sprite2, helperFunctionType) for basic collision checks.
-
-5. Physics and Movement
-- Physics Namespace: The Physics namespace includes functions for handling movement, gravity, and basic physics interactions. These functions work well for platformers or games needing simple physics.
-- Customizing Movement: Adjust movement speeds, jump heights, or gravity as needed by editing functions in Physics. You can also log debug information if using spdlog by adding logging calls in this namespace.
-
-6. Logging (Using spdlog)
-- Debug Logging: Logging can help debug scenes and check variable states. spdlog functions are accessible throughout the project; logging is initialized in GameManager or any key game class to monitor state changes or performance metrics.
-
-7. Build and Run
-- Compilation: Use make with the provided Makefile to compile the project
-
-Feel free to modify these sections according to your game’s needs, adding more scenes, adjusting constants, or extending components as needed.
