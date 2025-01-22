@@ -85,7 +85,7 @@ void gamePlayScene::createAssets() {
 
         // Initialize sprites and music here 
         background = std::make_unique<Background>(Constants::BACKGROUND_POSITION, Constants::BACKGROUND_SCALE, Constants::BACKGROUND_TEXTURE);
-
+        
         player = std::make_unique<Player>(Constants::SPRITE1_POSITION, Constants::SPRITE1_SCALE, Constants::SPRITE1_TEXTURE, Constants::SPRITE1_SPEED, Constants::SPRITE1_ACCELERATION, 
                                           Constants::SPRITE1_ANIMATIONRECTS, Constants::SPRITE1_INDEXMAX, utils::convertToWeakPtrVector(Constants::SPRITE1_BITMASK));
         player->setRects(0); 
@@ -99,10 +99,10 @@ void gamePlayScene::createAssets() {
         button1->setRects(0); 
         
         // Initialize individual Tiles in the array
-        for (int i = 0; i < Constants::TILES_NUMBER; ++i) {
-            tiles1.at(i) = std::make_shared<Tile>(Constants::TILES_SCALE, Constants::TILES_TEXTURE, Constants::TILES_SINGLE_RECTS[i], Constants::TILES_BITMASKS[i], Constants::TILES_BOOLS[i]); 
-        }
-        tileMap1 = std::make_unique<TileMap>(tiles1.data(), Constants::TILES_NUMBER, Constants::TILEMAP_WIDTH, Constants::TILEMAP_HEIGHT, Constants::TILE_WIDTH, Constants::TILE_HEIGHT, Constants::TILEMAP_FILEPATH, Constants::TILEMAP_POSITION); 
+        // for (int i = 0; i < Constants::TILES_NUMBER; ++i) {
+        //     tiles1.at(i) = std::make_shared<Tile>(Constants::TILES_SCALE, Constants::TILES_TEXTURE, Constants::TILES_SINGLE_RECTS[i], Constants::TILES_BITMASKS[i], Constants::TILES_BOOLS[i]); 
+        // }
+        // tileMap1 = std::make_unique<TileMap>(tiles1.data(), Constants::TILES_NUMBER, Constants::TILEMAP_WIDTH, Constants::TILEMAP_HEIGHT, Constants::TILE_WIDTH, Constants::TILE_HEIGHT, Constants::TILEMAP_FILEPATH, Constants::TILEMAP_POSITION); 
 
         playerJumpSound = std::make_unique<SoundClass>(Constants::PLAYERJUMP_SOUNDBUFF, Constants::PLAYERJUMPSOUND_VOLUME); 
           
@@ -161,6 +161,9 @@ void gamePlayScene::handleMouseClick() {
 
             window.clear();
         }
+        if(player->getVisibleState()){
+            player->changePosition(MetaComponents::mouseClickedPosition_f); 
+        }
         if (FlagSystem::gameScene1Flags.playerFalling){
             player->changePosition(Constants::SPRITE1_POSITION); 
         }
@@ -182,44 +185,33 @@ void gamePlayScene::handleMovementKeys() {
     sf::FloatRect viewBounds = MetaComponents::getViewBounds();
 
     // Left movement
-    if (FlagSystem::flagEvents.aPressed) {
-        if (!physics::collisionHelper(player, tileMap1) || player->getSpritePos().x > tileMap1->getTileMapPosition().x) {
-            physics::spriteMover(player, physics::moveLeft);
-        }
+    if (FlagSystem::flagEvents.aPressed && viewBounds.left > background1Bounds.left) {
+        physics::spriteMover(player, physics::moveLeft);
+        if (player) player->changeAnimation();
     }
     // Right movement
-    if (FlagSystem::flagEvents.dPressed) {
-        if (!physics::collisionHelper(player, tileMap1) || player->getSpritePos().x + player->getRects().width < tileMap1->getTileMapPosition().x + tileMap1->getTileMapWidth() * tileMap1->getTileWidth()) {
-            physics::spriteMover(player, physics::moveRight);
-        }
+    if (FlagSystem::flagEvents.dPressed && viewBounds.left + viewBounds.width < background2Bounds.left + background2Bounds.width) {
+        physics::spriteMover(player, physics::moveRight);      
+        if (player) player->changeAnimation();
     }
     // Down movement
-    if (FlagSystem::flagEvents.sPressed) {
-        if (!physics::collisionHelper(player, tileMap1) || player->getSpritePos().y + player->getRects().height < tileMap1->getTileMapPosition().y + tileMap1->getTileMapHeight() * tileMap1->getTileHeight()) {
-            physics::spriteMover(player, physics::moveDown);
-        }
+    if (FlagSystem::flagEvents.sPressed && viewBounds.top + viewBounds.height < background1Bounds.top + background1Bounds.height) {
+        physics::spriteMover(player, physics::moveDown);   
+        if (player) player->changeAnimation(); 
     }
     // Up movement
-    if (FlagSystem::flagEvents.wPressed) {
-        if (!physics::collisionHelper(player, tileMap1) || player->getSpritePos().y > tileMap1->getTileMapPosition().y) {
-            physics::spriteMover(player, physics::moveUp);
-        }
-        if (viewBounds.top > background1Bounds.top || viewBounds.top > background2Bounds.top) {
-           // MetaComponents::view.move(sf::Vector2f(0, -1));
-        }
+    if (FlagSystem::flagEvents.wPressed && viewBounds.top > background1Bounds.top) {
+        physics::spriteMover(player, physics::moveUp);       
+        if (player) player->changeAnimation();
     }
 }
 
 // Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision 
 void gamePlayScene::handleGameEvents() { 
-    if (player) physics::spriteMover(player, physics::moveRight); 
-
-    FlagSystem::gameScene1Flags.playerFalling = !physics::collisionHelper(player, tileMap1) && !FlagSystem::gameScene1Flags.playerJumping; // player must be not colliding with the tilemap, and it must not be jumping
     FlagSystem::gameScene1Flags.playerJumping = (MetaComponents::spacePressedElapsedTime > 0); 
 } 
 
 void gamePlayScene::handleSceneFlags(){
-    if(FlagSystem::gameScene1Flags.playerFalling) physics::spriteMover(player, physics::freeFall); 
 }
 
 void gamePlayScene::update() {
@@ -247,12 +239,11 @@ void gamePlayScene::updateEntityStates(){ // manually change the sprite's state
 
 void gamePlayScene::changeAnimation(){ // change animation for sprites. change animation for texts if necessary 
     if (button1) button1->changeAnimation(); 
-    if (background) background->updateBackground(Constants::BACKGROUND_SPEED, Constants::BACKGROUND_MOVING_DIRECTION);
-    if (player) player->changeAnimation();
+  //  if (player) player->changeAnimation();
 }
 
 void gamePlayScene::updatePlayerAndView() {
-    if(player->getJumpingState() || player->getFallingState()) return; // don't make the view focus on player if player is jumping or falling
+    // if(player->getJumpingState() || player->getFallingState()) return; // don't make the view focus on player if player is jumping or falling
 
     // Calculate the center of the view based on the player's position
     float viewCenterX = player->getSpritePos().x;
@@ -283,7 +274,6 @@ void gamePlayScene::draw() {
         if (button1 && button1->getVisibleState()) {
             window.draw(*button1); 
         }
-        if (tileMap1) window.draw(*tileMap1); 
         
         if (player && player->getVisibleState()) {
             window.draw(*player); 

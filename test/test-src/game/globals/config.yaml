@@ -9,8 +9,8 @@ world:
     size_x: 960.0 # pixels. also the screen size 
     size_y: 540.0 # pixels. also the screen size  
     initial_center:
-      x: 480.0 # pixels, absoloute from window
-      y: 270.0 # pixels, absoloute from window
+      x: 0.0 # pixels, absoloute from window
+      y: 0.0 # pixels, absoloute from window
 
 # Game score settings
 score:
@@ -31,10 +31,10 @@ sprite:
 background:
   speed: 35.0 
   textures:
-    day_path: "test/test-assets/sprites/png/background_day.png"
+    day_path: "test/test-assets/sprites/png/background.jpeg"
     night_path: "test/test-assets/sprites/png/background_night.png"
   position:
-    x: 0.0 # pixels 
+    x: -500.0 # pixels 
     y: 0.0 # pixels 
   scale:
     x: 1.0
@@ -56,7 +56,7 @@ sprites:
     path: "test/test-assets/sprites/png/player.png"
     position:
       x: 200.0 # pixels 
-      y: 400.0 # pixels 
+      y: 600.0 # pixels 
     scale:
       x: 1.0
       y: 1.0
