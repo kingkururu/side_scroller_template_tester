@@ -31,10 +31,10 @@ sprite:
 background:
   speed: 35.0 
   textures:
-    day_path: "test/test-assets/sprites/png/background.jpeg"
-    night_path: "test/test-assets/sprites/png/background_night.png"
+    day_path: "test/test-assets/sprites/png/background_night.png"
+    night_path: "test/test-assets/sprites/png/background_day.png"
   position:
-    x: -500.0 # pixels 
+    x: -200.0 # pixels 
     y: 0.0 # pixels 
   scale:
     x: 1.0
@@ -106,7 +106,7 @@ text:
 # Music settings
 music:
   background_music:
-    path: "test/test-assets/sound/mp3/bgm.mp3"
+    path: "test/test-assets/sound/mp3/music1.mp3"
     volume: 80.0 # percent
 
 # Sound settings

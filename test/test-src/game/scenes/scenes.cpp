@@ -185,24 +185,20 @@ void gamePlayScene::handleMovementKeys() {
     sf::FloatRect viewBounds = MetaComponents::getViewBounds();
 
     // Left movement
-    if (FlagSystem::flagEvents.aPressed && viewBounds.left > background1Bounds.left) {
+    if (FlagSystem::flagEvents.aPressed) {
         physics::spriteMover(player, physics::moveLeft);
-        if (player) player->changeAnimation();
     }
     // Right movement
-    if (FlagSystem::flagEvents.dPressed && viewBounds.left + viewBounds.width < background2Bounds.left + background2Bounds.width) {
-        physics::spriteMover(player, physics::moveRight);      
-        if (player) player->changeAnimation();
+    if (FlagSystem::flagEvents.dPressed) {
+        physics::spriteMover(player, physics::moveRight);
     }
     // Down movement
-    if (FlagSystem::flagEvents.sPressed && viewBounds.top + viewBounds.height < background1Bounds.top + background1Bounds.height) {
-        physics::spriteMover(player, physics::moveDown);   
-        if (player) player->changeAnimation(); 
+    if (FlagSystem::flagEvents.sPressed) {
+        physics::spriteMover(player, physics::moveDown);
     }
     // Up movement
-    if (FlagSystem::flagEvents.wPressed && viewBounds.top > background1Bounds.top) {
-        physics::spriteMover(player, physics::moveUp);       
-        if (player) player->changeAnimation();
+    if (FlagSystem::flagEvents.wPressed) {
+        physics::spriteMover(player, physics::moveUp);
     }
 }
 
@@ -239,19 +235,52 @@ void gamePlayScene::updateEntityStates(){ // manually change the sprite's state
 
 void gamePlayScene::changeAnimation(){ // change animation for sprites. change animation for texts if necessary 
     if (button1) button1->changeAnimation(); 
-  //  if (player) player->changeAnimation();
+    if (background) background->updateBackground(Constants::BACKGROUND_SPEED, Constants::BACKGROUND_MOVING_DIRECTION);
+    if (player) player->changeAnimation();
 }
+
+// void gamePlayScene::updatePlayerAndView() {
+//     if(...) 
+
+//     // Calculate the center of the view based on the player's position
+//     float viewCenterX = player->getSpritePos().x;
+//     float viewCenterY = player->getSpritePos().y;
+
+//     // Set the new view center to follow the player's position
+//     MetaComponents::view.setCenter(viewCenterX, viewCenterY - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET);
+// }
 
 void gamePlayScene::updatePlayerAndView() {
-    // if(player->getJumpingState() || player->getFallingState()) return; // don't make the view focus on player if player is jumping or falling
+    // Get the player's position
+    sf::Vector2f playerPos = player->getSpritePos();
 
-    // Calculate the center of the view based on the player's position
-    float viewCenterX = player->getSpritePos().x;
-    float viewCenterY = player->getSpritePos().y;
+    // Calculate the view size and game world boundaries
+    sf::Vector2f viewSize = MetaComponents::view.getSize();
+    sf::FloatRect worldBounds(0, 0, Constants::WORLD_WIDTH, Constants::WORLD_HEIGHT);
 
-    // Set the new view center to follow the player's position
-    MetaComponents::view.setCenter(viewCenterX, viewCenterY - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET);
+    // Default view center is the player's position
+    sf::Vector2f viewCenter = playerPos;
+
+    // Check if the player is near the edges of the game world
+    if (playerPos.x < viewSize.x / 2.0f) {
+        viewCenter.x = viewSize.x / 2.0f; // Lock the view to the left edge
+    } else if (playerPos.x > worldBounds.width - viewSize.x / 2.0f) {
+        viewCenter.x = worldBounds.width - viewSize.x / 2.0f; // Lock the view to the right edge
+    }
+
+    if (playerPos.y < viewSize.y / 2.0f) {
+        viewCenter.y = viewSize.y / 2.0f; // Lock the view to the top edge
+    } else if (playerPos.y > worldBounds.height - viewSize.y / 2.0f) {
+        viewCenter.y = worldBounds.height - viewSize.y / 2.0f; // Lock the view to the bottom edge
+    }
+
+    // Offset to keep the player slightly off-center vertically
+    viewCenter.y -= Constants::SPRITE_OUT_OF_BOUNDS_OFFSET;
+
+    // Update the view center
+    MetaComponents::view.setCenter(viewCenter);
 }
+
 
 void gamePlayScene::updateDrawablesVisibility(){
     try{
