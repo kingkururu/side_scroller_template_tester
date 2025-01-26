@@ -172,7 +172,7 @@ namespace physics{
             //         "), Collision: " + (collision ? "true" : "false"));
             return collision;
         } 
-        else {
+        else { // tilemap 
             auto getTileMap = [](auto&& obj2) -> auto& {
                 if constexpr (std::is_pointer_v<std::decay_t<decltype(obj2)>> || std::is_same_v<std::decay_t<decltype(obj2)>, std::unique_ptr<TileMap>>) {
                     return *obj2; 

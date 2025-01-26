@@ -56,7 +56,7 @@ sprites:
     path: "test/test-assets/sprites/png/player.png"
     position:
       x: 200.0 # pixels 
-      y: 600.0 # pixels 
+      y: 500.0 # pixels 
     scale:
       x: 1.0
       y: 1.0
@@ -86,10 +86,10 @@ tiles:
 tilemap:
   position: 
     x: 0.0 # pixels
-    y: 400.0 # pixels
+    y: 600.0 # pixels
   width: 140 # number of grids in a row 
-  height: 150 # number of grids in a column 
-  boundary_offset: 100 
+  height: 2 # number of grids in a column 
+  boundary_offset: 10 
   filepath: "test/test-assets/tiles/tilemap.txt"
   walkable: [false, true, true, false, false, true] #add more inside. if not meeting full size, the rest gets set to false 
 

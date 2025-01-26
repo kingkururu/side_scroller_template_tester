@@ -99,10 +99,10 @@ void gamePlayScene::createAssets() {
         button1->setRects(0); 
         
         // Initialize individual Tiles in the array
-        // for (int i = 0; i < Constants::TILES_NUMBER; ++i) {
-        //     tiles1.at(i) = std::make_shared<Tile>(Constants::TILES_SCALE, Constants::TILES_TEXTURE, Constants::TILES_SINGLE_RECTS[i], Constants::TILES_BITMASKS[i], Constants::TILES_BOOLS[i]); 
-        // }
-        // tileMap1 = std::make_unique<TileMap>(tiles1.data(), Constants::TILES_NUMBER, Constants::TILEMAP_WIDTH, Constants::TILEMAP_HEIGHT, Constants::TILE_WIDTH, Constants::TILE_HEIGHT, Constants::TILEMAP_FILEPATH, Constants::TILEMAP_POSITION); 
+        for (int i = 0; i < Constants::TILES_NUMBER; ++i) {
+            tiles1.at(i) = std::make_shared<Tile>(Constants::TILES_SCALE, Constants::TILES_TEXTURE, Constants::TILES_SINGLE_RECTS[i], Constants::TILES_BITMASKS[i], Constants::TILES_BOOLS[i]); 
+        }
+        tileMap1 = std::make_unique<TileMap>(tiles1.data(), Constants::TILES_NUMBER, Constants::TILEMAP_WIDTH, Constants::TILEMAP_HEIGHT, Constants::TILE_WIDTH, Constants::TILE_HEIGHT, Constants::TILEMAP_FILEPATH, Constants::TILEMAP_POSITION); 
 
         playerJumpSound = std::make_unique<SoundClass>(Constants::PLAYERJUMP_SOUNDBUFF, Constants::PLAYERJUMPSOUND_VOLUME); 
           
@@ -161,9 +161,6 @@ void gamePlayScene::handleMouseClick() {
 
             window.clear();
         }
-        if(player->getVisibleState()){
-            player->changePosition(MetaComponents::mouseClickedPosition_f); 
-        }
         if (FlagSystem::gameScene1Flags.playerFalling){
             player->changePosition(Constants::SPRITE1_POSITION); 
         }
@@ -186,28 +183,43 @@ void gamePlayScene::handleMovementKeys() {
 
     // Left movement
     if (FlagSystem::flagEvents.aPressed) {
-        physics::spriteMover(player, physics::moveLeft);
+        if (!physics::collisionHelper(player, tileMap1) || player->getSpritePos().x > tileMap1->getTileMapPosition().x) {
+            physics::spriteMover(player, physics::moveLeft);
+        }
     }
     // Right movement
     if (FlagSystem::flagEvents.dPressed) {
-        physics::spriteMover(player, physics::moveRight);
+        if (!physics::collisionHelper(player, tileMap1) || player->getSpritePos().x + player->getRects().width < tileMap1->getTileMapPosition().x + tileMap1->getTileMapWidth() * tileMap1->getTileWidth()) {
+            physics::spriteMover(player, physics::moveRight);
+        }
     }
     // Down movement
     if (FlagSystem::flagEvents.sPressed) {
-        physics::spriteMover(player, physics::moveDown);
+        if (!physics::collisionHelper(player, tileMap1) || player->getSpritePos().y + player->getRects().height < tileMap1->getTileMapPosition().y + tileMap1->getTileMapHeight() * tileMap1->getTileHeight()) {
+            physics::spriteMover(player, physics::moveDown);
+        }
     }
     // Up movement
     if (FlagSystem::flagEvents.wPressed) {
-        physics::spriteMover(player, physics::moveUp);
+        if (!physics::collisionHelper(player, tileMap1) || player->getSpritePos().y > tileMap1->getTileMapPosition().y) {
+            physics::spriteMover(player, physics::moveUp);
+        }
+        if (viewBounds.top > background1Bounds.top || viewBounds.top > background2Bounds.top) {
+           // MetaComponents::view.move(sf::Vector2f(0, -1));
+        }
     }
 }
 
 // Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision 
 void gamePlayScene::handleGameEvents() { 
+    if (player) physics::spriteMover(player, physics::moveRight); 
+
+    FlagSystem::gameScene1Flags.playerFalling = !physics::collisionHelper(player, tileMap1) && !FlagSystem::gameScene1Flags.playerJumping; // player must be not colliding with the tilemap, and it must not be jumping
     FlagSystem::gameScene1Flags.playerJumping = (MetaComponents::spacePressedElapsedTime > 0); 
 } 
 
 void gamePlayScene::handleSceneFlags(){
+    if(FlagSystem::gameScene1Flags.playerFalling) physics::spriteMover(player, physics::freeFall); 
 }
 
 void gamePlayScene::update() {
@@ -239,46 +251,43 @@ void gamePlayScene::changeAnimation(){ // change animation for sprites. change a
     if (player) player->changeAnimation();
 }
 
-// void gamePlayScene::updatePlayerAndView() {
-//     if(...) 
-
-//     // Calculate the center of the view based on the player's position
-//     float viewCenterX = player->getSpritePos().x;
-//     float viewCenterY = player->getSpritePos().y;
-
-//     // Set the new view center to follow the player's position
-//     MetaComponents::view.setCenter(viewCenterX, viewCenterY - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET);
-// }
-
 void gamePlayScene::updatePlayerAndView() {
-    // Get the player's position
-    sf::Vector2f playerPos = player->getSpritePos();
+    if(player->getJumpingState() || player->getFallingState()) return; // don't make the view focus on player if player is jumping or falling
 
-    // Calculate the view size and game world boundaries
-    sf::Vector2f viewSize = MetaComponents::view.getSize();
-    sf::FloatRect worldBounds(0, 0, Constants::WORLD_WIDTH, Constants::WORLD_HEIGHT);
+    // // Get the player's position
+    // sf::Vector2f playerPos = player->getSpritePos();
 
-    // Default view center is the player's position
-    sf::Vector2f viewCenter = playerPos;
+    // // Calculate the view size and game world boundaries
+    // sf::Vector2f viewSize = MetaComponents::view.getSize();
+    // sf::FloatRect worldBounds(0, 0, Constants::WORLD_WIDTH, Constants::WORLD_HEIGHT);
 
-    // Check if the player is near the edges of the game world
-    if (playerPos.x < viewSize.x / 2.0f) {
-        viewCenter.x = viewSize.x / 2.0f; // Lock the view to the left edge
-    } else if (playerPos.x > worldBounds.width - viewSize.x / 2.0f) {
-        viewCenter.x = worldBounds.width - viewSize.x / 2.0f; // Lock the view to the right edge
-    }
+    // // Default view center is the player's position
+    // sf::Vector2f viewCenter = playerPos;
 
-    if (playerPos.y < viewSize.y / 2.0f) {
-        viewCenter.y = viewSize.y / 2.0f; // Lock the view to the top edge
-    } else if (playerPos.y > worldBounds.height - viewSize.y / 2.0f) {
-        viewCenter.y = worldBounds.height - viewSize.y / 2.0f; // Lock the view to the bottom edge
-    }
+    // // Check if the player is near the edges of the game world
+    // if (playerPos.x < viewSize.x / 2.0f) {
+    //     viewCenter.x = viewSize.x / 2.0f; // Lock the view to the left edge
+    // } else if (playerPos.x > worldBounds.width - viewSize.x / 2.0f) {
+    //     viewCenter.x = worldBounds.width - viewSize.x / 2.0f; // Lock the view to the right edge
+    // }
 
-    // Offset to keep the player slightly off-center vertically
-    viewCenter.y -= Constants::SPRITE_OUT_OF_BOUNDS_OFFSET;
+    // if (playerPos.y < viewSize.y / 2.0f) {
+    //     viewCenter.y = viewSize.y / 2.0f; // Lock the view to the top edge
+    // } else if (playerPos.y > worldBounds.height - viewSize.y / 2.0f) {
+    //     viewCenter.y = worldBounds.height - viewSize.y / 2.0f; // Lock the view to the bottom edge
+    // }
 
-    // Update the view center
-    MetaComponents::view.setCenter(viewCenter);
+    // // Offset to keep the player slightly off-center vertically
+    // viewCenter.y -= Constants::SPRITE_OUT_OF_BOUNDS_OFFSET;
+
+    // // Update the view center
+    // MetaComponents::view.setCenter(viewCenter);
+     // Calculate the center of the view based on the player's position
+    float viewCenterX = player->getSpritePos().x;
+    float viewCenterY = player->getSpritePos().y;
+
+    // Set the new view center to follow the player's position
+    MetaComponents::view.setCenter(viewCenterX, viewCenterY - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET);
 }
 
 
@@ -299,6 +308,8 @@ void gamePlayScene::draw() {
         if (background && background->getVisibleState()) {
             window.draw(*background); 
         }
+
+        if(tileMap1) window.draw(*tileMap1);
 
         if (button1 && button1->getVisibleState()) {
             window.draw(*button1); 

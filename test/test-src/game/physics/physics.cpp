@@ -159,6 +159,7 @@ namespace physics {
             else {
                 originalPos.y += speed * MetaComponents::deltaTime * (elapsedTime - jumpDuration / 2.0) / ( jumpDuration / 2.0)* acceleration.y * gravity;
             }
+           // originalPos.x += speed * MetaComponents::deltaTime * acceleration.x, originalPos.y;  
             //log_info("Jump in progress. Elapsed time: {}, Position: ({}, {})" + std::to_string(elapsedTime) + ", "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
         } else {
             // Reset jump state
