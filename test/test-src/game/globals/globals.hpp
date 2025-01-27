@@ -105,7 +105,15 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     inline float CLOUDBLUE_SPEED;
     inline sf::Vector2f CLOUDBLUE_ACCELERATION;
     inline std::shared_ptr<sf::Texture> CLOUDBLUE_TEXTURE = std::make_shared<sf::Texture>();
+    inline std::shared_ptr<sf::Uint8[]> CLOUDBLUE_BITMASK;
+    inline sf::IntRect CLOUDBLUE_RECT;
 
+    inline std::filesystem::path CLOUDPURPLE_PATH;
+    inline sf::Vector2f CLOUDPURPLE_POSITION;
+    inline std::shared_ptr<sf::Texture> CLOUDPURPLE_TEXTURE = std::make_shared<sf::Texture>();
+    inline std::shared_ptr<sf::Uint8[]> CLOUDPURPLE_BITMASK;
+    inline sf::IntRect CLOUDPURPLE_RECT;
+    
     // Button settings
     inline short BUTTON1_INDEXMAX;
     inline std::filesystem::path BUTTON1_PATH;

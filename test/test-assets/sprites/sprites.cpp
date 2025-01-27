@@ -258,6 +258,17 @@ std::shared_ptr<sf::Uint8[]> const Animated::getBitmask(size_t index) const {
     }
 }
 
+// returns bitmask for a sprite 
+std::shared_ptr<sf::Uint8[]> const Cloud::getBitmask(size_t index) const {
+    try {
+        return bitMask.lock();
+    } 
+    catch (const std::exception& e) {
+        log_error("Error in getBitmask for cloud: " + std::string(e.what()));
+        throw;
+    }
+}
+
 // specialized player position update method 
 void Player::updatePlayer(sf::Vector2f newPos) {
     changePosition(newPos); 

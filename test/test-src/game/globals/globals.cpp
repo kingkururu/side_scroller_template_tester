@@ -120,12 +120,20 @@ namespace Constants {
             SPRITE1_SCALE = {config["sprites"]["sprite1"]["scale"]["x"].as<float>(),
                             config["sprites"]["sprite1"]["scale"]["y"].as<float>()};
 
+            // Cloud (blue) settings
             CLOUDBLUE_PATH = config["sprites"]["cloudBlue"]["path"].as<std::string>();
             CLOUDBLUE_POSITION = {config["sprites"]["cloudBlue"]["position"]["x"].as<float>(),
                                 config["sprites"]["cloudBlue"]["position"]["y"].as<float>()};
             CLOUDBLUE_SCALE = {config["sprites"]["cloudBlue"]["scale"]["x"].as<float>(),
                             config["sprites"]["cloudBlue"]["scale"]["y"].as<float>()};
             CLOUDBLUE_SPEED = config["sprites"]["cloudBlue"]["speed"].as<float>();
+            CLOUDBLUE_ACCELERATION= {config["sprites"]["cloudBlue"]["acceleration"]["x"].as<float>(),
+                                config["sprites"]["cloudBlue"]["acceleration"]["y"].as<float>()};
+
+            // Cloud (purple) settings
+            CLOUDPURPLE_PATH = config["sprites"]["cloudPurple"]["path"].as<std::string>();
+            CLOUDPURPLE_POSITION = {config["sprites"]["cloudPurple"]["position"]["x"].as<float>(),
+                                config["sprites"]["cloudPurple"]["position"]["y"].as<float>()};
 
             // Load button settings
             BUTTON1_INDEXMAX = config["sprites"]["button1"]["index_max"].as<short>();
@@ -203,6 +211,8 @@ namespace Constants {
 
         if (!CLOUDBLUE_TEXTURE->loadFromFile(CLOUDBLUE_PATH)) log_warning("Failed to load blue cloud texture");
 
+        if (!CLOUDPURPLE_TEXTURE->loadFromFile(CLOUDPURPLE_PATH)) log_warning("Failed to load purple cloud texture");
+
         if (!BACKGROUNDMUSIC_MUSIC->openFromFile(BACKGROUNDMUSIC_PATH)) log_warning("Failed to load background music");
 
         if (!PLAYERJUMP_SOUNDBUFF->loadFromFile(PLAYERJUMPSOUND_PATH)) log_warning("Failed to load player jump sound");
@@ -230,6 +240,12 @@ namespace Constants {
         for (const auto& rect : BUTTON1_ANIMATIONRECTS ) {
             BUTTON1_BITMASK.emplace_back(createBitmask(BUTTON1_TEXTURE, rect));
         }
+        
+        CLOUDBLUE_RECT = sf::IntRect(sf::IntRect{ 0, 0, 410, 232 }); 
+        CLOUDBLUE_BITMASK = createBitmask(CLOUDBLUE_TEXTURE, CLOUDBLUE_RECT);
+
+        CLOUDPURPLE_RECT = sf::IntRect(sf::IntRect{ 0, 0, 410, 232 }); 
+        CLOUDPURPLE_BITMASK = createBitmask(CLOUDPURPLE_TEXTURE, CLOUDPURPLE_RECT);
 
         TILES_SINGLE_RECTS.reserve(TILES_NUMBER); 
         // Populate individual tile rectangles

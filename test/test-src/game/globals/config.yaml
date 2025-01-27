@@ -78,6 +78,14 @@ sprites:
       x: 1.0
       y: 1.0
     speed: 10.0 
+    acceleration:
+      x: 2.0 
+      y: 2.0
+  cloudPurple:
+    path: "test/test-assets/sprites/png/cloud2.png"
+    position:
+      x: 700.0 # pixels 
+      y: 300.0 # pixels
 
 # Tile settings
 tiles:

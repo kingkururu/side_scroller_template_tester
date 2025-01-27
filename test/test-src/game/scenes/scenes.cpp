@@ -83,7 +83,12 @@ void gamePlayScene::createAssets() {
     try {
         globalTimer.Reset();  
 
-        cloudBlue = std::make_unique<NonStatic>(Constants::CLOUDBLUE_POSITION, Constants::CLOUDBLUE_SCALE, Constants::CLOUDBLUE_TEXTURE, Constants::CLOUDBLUE_SPEED, Constants::CLOUDBLUE_ACCELERATION);
+        std::weak_ptr<sf::Uint8[]> cloudBlueBitmaskWeakPtr = Constants::CLOUDBLUE_BITMASK;  
+        cloudBlue = std::make_unique<Cloud>(Constants::CLOUDBLUE_POSITION, Constants::CLOUDBLUE_SCALE, Constants::CLOUDBLUE_TEXTURE, Constants::CLOUDBLUE_SPEED, Constants::CLOUDBLUE_ACCELERATION, cloudBlueBitmaskWeakPtr);
+        
+        std::weak_ptr<sf::Uint8[]> cloudPurpleBitmaskWeakPtr = Constants::CLOUDPURPLE_BITMASK;  
+        cloudPurple = std::make_unique<Cloud>(Constants::CLOUDPURPLE_POSITION, Constants::CLOUDBLUE_SCALE, Constants::CLOUDPURPLE_TEXTURE, Constants::CLOUDBLUE_SPEED, Constants::CLOUDBLUE_ACCELERATION, cloudPurpleBitmaskWeakPtr);
+
         // Initialize sprites and music here 
         background = std::make_unique<Background>(Constants::BACKGROUND_POSITION, Constants::BACKGROUND_SCALE, Constants::BACKGROUND_TEXTURE);
         
@@ -92,7 +97,7 @@ void gamePlayScene::createAssets() {
         player->setRects(0); 
 
         backgroundMusic = std::make_unique<MusicClass>(std::move(Constants::BACKGROUNDMUSIC_MUSIC), Constants::BACKGROUNDMUSIC_VOLUME);
-        if(backgroundMusic) backgroundMusic->returnMusic().play(); 
+      //  if(backgroundMusic) backgroundMusic->returnMusic().play(); 
        
         button1 = std::make_unique<Button>(Constants::BUTTON1_POSITION, Constants::BUTTON1_SCALE, Constants::BUTTON1_TEXTURE, 
                                    Constants::BUTTON1_ANIMATIONRECTS, Constants::BUTTON1_INDEXMAX, 
@@ -324,7 +329,8 @@ void gamePlayScene::draw() {
         }
 
         if(cloudBlue && cloudBlue->getVisibleState()) window.draw(*cloudBlue);
-        
+        if(cloudPurple && cloudPurple->getVisibleState()) window.draw(*cloudPurple);
+
         if(text1) window.draw(*text1); 
 
         window.display(); 
