@@ -106,6 +106,8 @@ class gamePlayScene : public virtual Scene{
 
   std::unique_ptr<Background> background; 
   std::unique_ptr<Player> player; 
+  std::unique_ptr<NonStatic> cloudBlue;
+  std::unique_ptr<NonStatic> cloudPurple; 
 
   std::array<std::shared_ptr<Tile>, Constants::TILES_NUMBER> tiles1;   
   std::unique_ptr<TileMap> tileMap1; 

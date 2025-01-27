@@ -116,6 +116,16 @@ private:
     bool backgroundMoveState = true; 
 };
 
+class Cloud : public NonStatic{
+public:
+    explicit Cloud(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, float speed, std::weak_ptr<sf::Uint8[]>& bitMask)
+        : Sprite(position, scale, texture), NonStatic(position, scale, texture, speed, acceleration) {}
+    ~Cloud() override{}; 
+
+     
+private: 
+};
+
 // static class deriving from sprites; refers to non-moving sprites 
 class Static : public virtual Sprite{
 public:

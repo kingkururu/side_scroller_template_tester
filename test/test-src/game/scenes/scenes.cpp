@@ -83,6 +83,7 @@ void gamePlayScene::createAssets() {
     try {
         globalTimer.Reset();  
 
+        cloudBlue = std::make_unique<NonStatic>(Constants::CLOUDBLUE_POSITION, Constants::CLOUDBLUE_SCALE, Constants::CLOUDBLUE_TEXTURE, Constants::CLOUDBLUE_SPEED, Constants::CLOUDBLUE_ACCELERATION);
         // Initialize sprites and music here 
         background = std::make_unique<Background>(Constants::BACKGROUND_POSITION, Constants::BACKGROUND_SCALE, Constants::BACKGROUND_TEXTURE);
         
@@ -121,6 +122,9 @@ void gamePlayScene::createAssets() {
 void gamePlayScene::insertItemsInQuadtree(){
     quadtree.insert(player);  
     quadtree.insert(button1); 
+
+    //
+    quadtree.insert(cloudBlue);
 }
 
 void gamePlayScene::respawnAssets(){
@@ -319,6 +323,8 @@ void gamePlayScene::draw() {
             window.draw(*player); 
         }
 
+        if(cloudBlue && cloudBlue->getVisibleState()) window.draw(*cloudBlue);
+        
         if(text1) window.draw(*text1); 
 
         window.display(); 

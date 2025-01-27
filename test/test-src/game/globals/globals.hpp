@@ -98,6 +98,14 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     inline std::vector<sf::IntRect> SPRITE1_ANIMATIONRECTS;
     inline std::vector<std::shared_ptr<sf::Uint8[]>> SPRITE1_BITMASK;
 
+    // Cloud (blue) settings
+    inline std::filesystem::path CLOUDBLUE_PATH;
+    inline sf::Vector2f CLOUDBLUE_POSITION;
+    inline sf::Vector2f CLOUDBLUE_SCALE;
+    inline float CLOUDBLUE_SPEED;
+    inline sf::Vector2f CLOUDBLUE_ACCELERATION;
+    inline std::shared_ptr<sf::Texture> CLOUDBLUE_TEXTURE = std::make_shared<sf::Texture>();
+
     // Button settings
     inline short BUTTON1_INDEXMAX;
     inline std::filesystem::path BUTTON1_PATH;

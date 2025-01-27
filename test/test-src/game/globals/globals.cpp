@@ -120,6 +120,13 @@ namespace Constants {
             SPRITE1_SCALE = {config["sprites"]["sprite1"]["scale"]["x"].as<float>(),
                             config["sprites"]["sprite1"]["scale"]["y"].as<float>()};
 
+            CLOUDBLUE_PATH = config["sprites"]["cloudBlue"]["path"].as<std::string>();
+            CLOUDBLUE_POSITION = {config["sprites"]["cloudBlue"]["position"]["x"].as<float>(),
+                                config["sprites"]["cloudBlue"]["position"]["y"].as<float>()};
+            CLOUDBLUE_SCALE = {config["sprites"]["cloudBlue"]["scale"]["x"].as<float>(),
+                            config["sprites"]["cloudBlue"]["scale"]["y"].as<float>()};
+            CLOUDBLUE_SPEED = config["sprites"]["cloudBlue"]["speed"].as<float>();
+
             // Load button settings
             BUTTON1_INDEXMAX = config["sprites"]["button1"]["index_max"].as<short>();
             BUTTON1_PATH = config["sprites"]["button1"]["path"].as<std::string>();
@@ -193,6 +200,8 @@ namespace Constants {
         if (!SPRITE1_TEXTURE->loadFromFile(SPRITE1_PATH)) log_warning("Failed to load sprite1 texture");
 
         if (!TILES_TEXTURE->loadFromFile(TILES_PATH)) log_warning("Failed to load tiles texture");
+
+        if (!CLOUDBLUE_TEXTURE->loadFromFile(CLOUDBLUE_PATH)) log_warning("Failed to load blue cloud texture");
 
         if (!BACKGROUNDMUSIC_MUSIC->openFromFile(BACKGROUNDMUSIC_PATH)) log_warning("Failed to load background music");
 
