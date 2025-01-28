@@ -113,13 +113,16 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     inline std::shared_ptr<sf::Uint8[]> CLOUDBLUE_BITMASK;
     inline sf::IntRect CLOUDBLUE_RECT;
     inline float CLOUDBLUE_INITIAL_RESPAWN_TIME;
+    inline unsigned short CLOUDBLUE_LIMIT;
 
+    // Cloud (purple) settings
     inline std::filesystem::path CLOUDPURPLE_PATH;
     inline sf::Vector2f CLOUDPURPLE_POSITION;
     inline std::shared_ptr<sf::Texture> CLOUDPURPLE_TEXTURE = std::make_shared<sf::Texture>();
     inline std::shared_ptr<sf::Uint8[]> CLOUDPURPLE_BITMASK;
     inline sf::IntRect CLOUDPURPLE_RECT;
     inline float CLOUDPURPLE_INITIAL_RESPAWN_TIME;
+    inline unsigned short CLOUDPURPLE_LIMIT;
 
     // Button settings
     inline short BUTTON1_INDEXMAX;

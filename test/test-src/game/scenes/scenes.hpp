@@ -40,7 +40,7 @@ class Scene {
 
   // blank templates here
   virtual void insertItemsInQuadtree(){}; 
-  virtual void deleteInvisibleSprites(){};  
+  virtual void handleInvisibleSprites(){};  
 
   virtual void setTime(){}; 
 
@@ -89,7 +89,7 @@ class gamePlayScene : public virtual Scene{
   void handleMovementKeys(); 
 
   void respawnAssets() override; 
-  void deleteInvisibleSprites() override;
+  void handleInvisibleSprites() override;
 
   void setTime() override;
 

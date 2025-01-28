@@ -138,7 +138,7 @@ void gamePlayScene::insertItemsInQuadtree(){
 
 void gamePlayScene::respawnAssets(){
     // use existing sprites or make new ones with pre-made textures
-    if(cloudBlueRespawnTime <= 0){
+    if(cloudBlueRespawnTime <= 0 && cloudBlue.size() < Constants::CLOUDBLUE_LIMIT){
         float newCloudBlueInterval = Constants::CLOUDBLUE_INITIAL_RESPAWN_TIME - MetaComponents::globalTime * 0.38;
         std::weak_ptr<sf::Uint8[]> cloudBlueBitmaskWeakPtr = Constants::CLOUDBLUE_BITMASK;  
         cloudBlue.push_back(std::make_unique<Cloud>(Constants::makeRandomPositionCloud(), Constants::CLOUDBLUE_SCALE, Constants::CLOUDBLUE_TEXTURE, Constants::CLOUDBLUE_SPEED, Constants::CLOUDBLUE_ACCELERATION, cloudBlueBitmaskWeakPtr));
@@ -146,7 +146,7 @@ void gamePlayScene::respawnAssets(){
         cloudBlueRespawnTime = std::max(newCloudBlueInterval, Constants::CLOUDBLUE_INITIAL_RESPAWN_TIME);
         std::cout << "made blue cloud" << std::endl;
     }
-    if(cloudPurpleRespawnTime <= 0){
+    if(cloudPurpleRespawnTime <= 0 && cloudPurple.size() < Constants::CLOUDPURPLE_LIMIT){
         float newCloudPurpleInterval = Constants::CLOUDPURPLE_INITIAL_RESPAWN_TIME - MetaComponents::globalTime * 0.38;
         std::weak_ptr<sf::Uint8[]> cloudPurpleBitmaskWeakPtr = Constants::CLOUDPURPLE_BITMASK;  
         cloudPurple.push_back(std::make_unique<Cloud>(Constants::makeRandomPositionCloud(), Constants::CLOUDBLUE_SCALE, Constants::CLOUDPURPLE_TEXTURE, Constants::CLOUDBLUE_SPEED, Constants::CLOUDBLUE_ACCELERATION, cloudPurpleBitmaskWeakPtr));
@@ -156,8 +156,16 @@ void gamePlayScene::respawnAssets(){
     }
 } 
 
-void gamePlayScene::deleteInvisibleSprites() {
-    // maybe do a sprite pooling 
+void gamePlayScene::handleInvisibleSprites() {
+    for(auto it = cloudBlue.begin(); it != cloudBlue.end(); ++it){
+        if(*it && !(*it)->getVisibleState()){
+            (*it)->changePosition(Constants::makeRandomPositionCloud());
+                    (*it)->updatePos();
+
+            (*it)->setVisibleState(true);
+            std::cout << cloudBlue.size() << std::endl; 
+        }
+    }
 }
 
 /* Updating time from GameManager's deltatime; it updates sprite respawn times and also counts 
@@ -248,6 +256,12 @@ void gamePlayScene::handleGameEvents() {
 
     FlagSystem::gameScene1Flags.playerFalling = !physics::collisionHelper(player, tileMap1) && !FlagSystem::gameScene1Flags.playerJumping; // player must be not colliding with the tilemap, and it must not be jumping
     FlagSystem::gameScene1Flags.playerJumping = (MetaComponents::spacePressedElapsedTime > 0); 
+
+    for (auto it = cloudBlue.begin(); it != cloudBlue.end(); ++it) {
+        if (*it && (*it)->getSpritePos().x + 300 < MetaComponents::getViewMinX() - Constants::PASSTHROUGH_OFFSET) {
+            (*it)->setVisibleState(false);
+        }
+    }
 } 
 
 void gamePlayScene::handleSceneFlags(){
@@ -259,7 +273,7 @@ void gamePlayScene::update() {
         updateEntityStates();
         changeAnimation();
         updateDrawablesVisibility(); 
-        deleteInvisibleSprites();
+        handleInvisibleSprites();
 
         updatePlayerAndView(); 
         quadtree.update(); 
@@ -410,7 +424,7 @@ void gamePlayScene2::draw() {
 
 void gamePlayScene2::update() {
     try {
-        deleteInvisibleSprites(); // do a sprite pooling or actually delete all
+        handleInvisibleSprites(); // do a sprite pooling or actually delete all
 
         window.setView(MetaComponents::view); 
         

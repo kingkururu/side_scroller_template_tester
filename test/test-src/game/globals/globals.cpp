@@ -160,12 +160,14 @@ namespace Constants {
             CLOUDBLUE_ACCELERATION= {config["sprites"]["cloudBlue"]["acceleration"]["x"].as<float>(),
                                 config["sprites"]["cloudBlue"]["acceleration"]["y"].as<float>()};
             CLOUDBLUE_INITIAL_RESPAWN_TIME = config["sprites"]["cloudBlue"]["respawn_time"].as<float>();
+            CLOUDBLUE_LIMIT = config["sprites"]["cloudBlue"]["limit"].as<unsigned short>();
 
             // Cloud (purple) settings
             CLOUDPURPLE_PATH = config["sprites"]["cloudPurple"]["path"].as<std::string>();
             CLOUDPURPLE_POSITION = {config["sprites"]["cloudPurple"]["position"]["x"].as<float>(),
                                 config["sprites"]["cloudPurple"]["position"]["y"].as<float>()};
-
+            CLOUDPURPLE_LIMIT = config["sprites"]["cloudPurple"]["limit"].as<unsigned short>();
+            
             // Load button settings
             BUTTON1_INDEXMAX = config["sprites"]["button1"]["index_max"].as<short>();
             BUTTON1_PATH = config["sprites"]["button1"]["path"].as<std::string>();
