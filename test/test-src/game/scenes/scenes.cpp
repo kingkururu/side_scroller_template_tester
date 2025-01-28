@@ -166,6 +166,15 @@ void gamePlayScene::handleInvisibleSprites() {
             std::cout << cloudBlue.size() << std::endl; 
         }
     }
+    for(auto it = cloudPurple.begin(); it != cloudPurple.end(); ++it){
+        if(*it && !(*it)->getVisibleState()){
+            (*it)->changePosition(Constants::makeRandomPositionCloud());
+                    (*it)->updatePos();
+
+            (*it)->setVisibleState(true);
+            std::cout << cloudPurple.size() << std::endl; 
+        }
+    }
 }
 
 /* Updating time from GameManager's deltatime; it updates sprite respawn times and also counts 
@@ -211,7 +220,6 @@ void gamePlayScene::handleSpaceKey() {
     if (FlagSystem::flagEvents.spacePressed) {
         if (player->getMoveState() && !FlagSystem::gameScene1Flags.playerFalling) {
             physics::spriteMover(player, physics::jump, MetaComponents::spacePressedElapsedTime, Constants::SPRITE1_JUMP_ACCELERATION);
-            MetaComponents::view.move(3, 0);
         } 
     }
 }
@@ -223,30 +231,19 @@ void gamePlayScene::handleMovementKeys() {
 
     // Left movement
     if (FlagSystem::flagEvents.aPressed) {
-        if (!physics::collisionHelper(player, tileMap1) || player->getSpritePos().x > tileMap1->getTileMapPosition().x) {
-            physics::spriteMover(player, physics::moveLeft);
-        }
+        physics::spriteMover(player, physics::moveLeft);
     }
     // Right movement
     if (FlagSystem::flagEvents.dPressed) {
-        if (!physics::collisionHelper(player, tileMap1) || player->getSpritePos().x + player->getRects().width < tileMap1->getTileMapPosition().x + tileMap1->getTileMapWidth() * tileMap1->getTileWidth()) {
-            physics::spriteMover(player, physics::moveRight);
-        }
+        physics::spriteMover(player, physics::moveRight);
     }
     // Down movement
     if (FlagSystem::flagEvents.sPressed) {
-        if (!physics::collisionHelper(player, tileMap1) || player->getSpritePos().y + player->getRects().height < tileMap1->getTileMapPosition().y + tileMap1->getTileMapHeight() * tileMap1->getTileHeight()) {
-            physics::spriteMover(player, physics::moveDown);
-        }
+        physics::spriteMover(player, physics::moveDown);
     }
     // Up movement
     if (FlagSystem::flagEvents.wPressed) {
-        if (!physics::collisionHelper(player, tileMap1) || player->getSpritePos().y > tileMap1->getTileMapPosition().y) {
-            physics::spriteMover(player, physics::moveUp);
-        }
-        if (viewBounds.top > background1Bounds.top || viewBounds.top > background2Bounds.top) {
-           // MetaComponents::view.move(sf::Vector2f(0, -1));
-        }
+        physics::spriteMover(player, physics::moveUp);
     }
 }
 
@@ -254,11 +251,16 @@ void gamePlayScene::handleMovementKeys() {
 void gamePlayScene::handleGameEvents() { 
   //  if (player) physics::spriteMover(player, physics::moveRight); 
 
-    FlagSystem::gameScene1Flags.playerFalling = !physics::collisionHelper(player, tileMap1) && !FlagSystem::gameScene1Flags.playerJumping; // player must be not colliding with the tilemap, and it must not be jumping
+   // FlagSystem::gameScene1Flags.playerFalling = !physics::collisionHelper(player, tileMap1) && !FlagSystem::gameScene1Flags.playerJumping; // player must be not colliding with the tilemap, and it must not be jumping
     FlagSystem::gameScene1Flags.playerJumping = (MetaComponents::spacePressedElapsedTime > 0); 
 
     for (auto it = cloudBlue.begin(); it != cloudBlue.end(); ++it) {
         if (*it && (*it)->getSpritePos().x + 300 < MetaComponents::getViewMinX() - Constants::PASSTHROUGH_OFFSET) {
+            (*it)->setVisibleState(false);
+        }
+    }
+    for(auto it = cloudPurple.begin(); it != cloudPurple.end(); ++it){
+        if(*it && (*it)->getSpritePos().x + 300 < MetaComponents::getViewMinX() - Constants::PASSTHROUGH_OFFSET){
             (*it)->setVisibleState(false);
         }
     }
@@ -300,35 +302,6 @@ void gamePlayScene::changeAnimation(){ // change animation for sprites. change a
 void gamePlayScene::updatePlayerAndView() {
     if(player->getJumpingState() || player->getFallingState()) return; // don't make the view focus on player if player is jumping or falling
 
-    // // Get the player's position
-    // sf::Vector2f playerPos = player->getSpritePos();
-
-    // // Calculate the view size and game world boundaries
-    // sf::Vector2f viewSize = MetaComponents::view.getSize();
-    // sf::FloatRect worldBounds(0, 0, Constants::WORLD_WIDTH, Constants::WORLD_HEIGHT);
-
-    // // Default view center is the player's position
-    // sf::Vector2f viewCenter = playerPos;
-
-    // // Check if the player is near the edges of the game world
-    // if (playerPos.x < viewSize.x / 2.0f) {
-    //     viewCenter.x = viewSize.x / 2.0f; // Lock the view to the left edge
-    // } else if (playerPos.x > worldBounds.width - viewSize.x / 2.0f) {
-    //     viewCenter.x = worldBounds.width - viewSize.x / 2.0f; // Lock the view to the right edge
-    // }
-
-    // if (playerPos.y < viewSize.y / 2.0f) {
-    //     viewCenter.y = viewSize.y / 2.0f; // Lock the view to the top edge
-    // } else if (playerPos.y > worldBounds.height - viewSize.y / 2.0f) {
-    //     viewCenter.y = worldBounds.height - viewSize.y / 2.0f; // Lock the view to the bottom edge
-    // }
-
-    // // Offset to keep the player slightly off-center vertically
-    // viewCenter.y -= Constants::SPRITE_OUT_OF_BOUNDS_OFFSET;
-
-    // // Update the view center
-    // MetaComponents::view.setCenter(viewCenter);
-     // Calculate the center of the view based on the player's position
     float viewCenterX = player->getSpritePos().x;
     float viewCenterY = player->getSpritePos().y;
 
@@ -360,10 +333,6 @@ void gamePlayScene::draw() {
         if (button1 && button1->getVisibleState()) {
             window.draw(*button1); 
         }
-        
-        if (player && player->getVisibleState()) {
-            window.draw(*player); 
-        }
 
         for (auto &cloud : cloudBlue) {
             if (cloud && cloud->getVisibleState()) {
@@ -378,6 +347,10 @@ void gamePlayScene::draw() {
         }
 
         if(text1) window.draw(*text1); 
+
+        if (player && player->getVisibleState()) {
+            window.draw(*player); 
+        }
 
         window.display(); 
     } 

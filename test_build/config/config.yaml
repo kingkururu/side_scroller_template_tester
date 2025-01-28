@@ -89,7 +89,7 @@ sprites:
       x: 700.0 # pixels 
       y: 300.0 # pixels
     respawn_time: 3.0 # seconds
-    limit: 3 # number of clouds
+    limit: 4 # number of clouds
 
 # Tile settings
 tiles:
