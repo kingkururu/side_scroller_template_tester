@@ -251,7 +251,6 @@ void gamePlayScene::handleMovementKeys() {
 void gamePlayScene::handleGameEvents() { 
   //  if (player) physics::spriteMover(player, physics::moveRight); 
 
-   // FlagSystem::gameScene1Flags.playerFalling = !physics::collisionHelper(player, tileMap1) && !FlagSystem::gameScene1Flags.playerJumping; // player must be not colliding with the tilemap, and it must not be jumping
     FlagSystem::gameScene1Flags.playerJumping = (MetaComponents::spacePressedElapsedTime > 0); 
 
     for (auto it = cloudBlue.begin(); it != cloudBlue.end(); ++it) {
@@ -264,10 +263,30 @@ void gamePlayScene::handleGameEvents() {
             (*it)->setVisibleState(false);
         }
     }
+    bool touchingCloud = false;
+    // Lambda to check collision with a vector of unique_ptr<Cloud>
+    auto checkCloudCollisions = [&](const std::vector<std::unique_ptr<Cloud>>& clouds) {
+        for (const auto& cloud : clouds) {
+            if (player && !touchingCloud) { // Only check if not already touching a cloud
+                touchingCloud = physics::collisionHelper(player, cloud, physics::pixelPerfectCollision, quadtree);
+                std::cout << touchingCloud << std::endl;
+                if (touchingCloud) break; // Stop checking further once touching a cloud
+            }
+        }
+    };
+
+    // Check collisions for both blue and purple clouds
+    checkCloudCollisions(cloudBlue);
+    checkCloudCollisions(cloudPurple);
+
+    // Update falling state based on whether the player is touching any cloud
+    FlagSystem::gameScene1Flags.playerFalling = !touchingCloud;
 } 
 
 void gamePlayScene::handleSceneFlags(){
-    if(FlagSystem::gameScene1Flags.playerFalling) physics::spriteMover(player, physics::freeFall); 
+    if(FlagSystem::gameScene1Flags.playerFalling) {
+        physics::spriteMover(player, physics::freeFall); 
+    }
 }
 
 void gamePlayScene::update() {

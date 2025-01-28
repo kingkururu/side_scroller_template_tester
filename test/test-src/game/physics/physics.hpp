@@ -254,6 +254,7 @@ namespace physics{
                     sf::Vector2f position2 = sprite2->getSpritePos();
                     float radius2 = sprite2->getRadius();
                     auto bitmask2 = sprite2->getBitmask(sprite2->getCurrIndex());
+                   
                     sf::Vector2f direction2 = sprite2->getDirectionVector();
                     float speed2 = sprite2->getSpeed();
                     sf::Vector2f acceleration2 = sprite2->getAcceleration();
@@ -270,7 +271,7 @@ namespace physics{
                     if constexpr (std::is_invocable_v<CollisionType, sf::Vector2f, float, sf::Vector2f, float>) { // circle collision 
                         return collisionFunc(position1, radius1, position2, radius2);
                     } else if constexpr (std::is_invocable_v<CollisionType, sf::Vector2f, sf::Vector2f, sf::Vector2f, sf::Vector2f>) { // bounding box collision
-                        return collisionFunc(position1, size1, position2, size2);
+                       return collisionFunc(position1, size1, position2, size2);
                     } else if constexpr (std::is_invocable_v<CollisionType, sf::Vector2f, sf::Vector2f, float, sf::FloatRect, sf::Vector2f>) { // raycast precollision 
                         if (!cachedRaycastResult.counter) {
                             return collisionFunc(position1, direction1, speed1, bounds1, acceleration1, position2, direction2, speed2, bounds2, acceleration2);
@@ -278,7 +279,7 @@ namespace physics{
                             cachedRaycastResult.counter = 0;
                             return true;
                         }
-                    } else if constexpr (std::is_invocable_v<CollisionType, std::shared_ptr<sf::Uint8[]>, sf::Vector2f, sf::Vector2f>) { // pixel perfect collision
+                    } else if constexpr (std::is_invocable_v<CollisionType, std::shared_ptr<sf::Uint8[]>, sf::Vector2f, sf::Vector2f, std::shared_ptr<sf::Uint8[]>, sf::Vector2f, sf::Vector2f>) { // pixel perfect collision
                         return collisionFunc(bitmask1, position1, size1, bitmask2, position2, size2);
                     }
                 }

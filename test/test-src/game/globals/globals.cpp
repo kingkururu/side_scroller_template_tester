@@ -167,7 +167,7 @@ namespace Constants {
             CLOUDPURPLE_POSITION = {config["sprites"]["cloudPurple"]["position"]["x"].as<float>(),
                                 config["sprites"]["cloudPurple"]["position"]["y"].as<float>()};
             CLOUDPURPLE_LIMIT = config["sprites"]["cloudPurple"]["limit"].as<unsigned short>();
-            
+
             // Load button settings
             BUTTON1_INDEXMAX = config["sprites"]["button1"]["index_max"].as<short>();
             BUTTON1_PATH = config["sprites"]["button1"]["path"].as<std::string>();
@@ -275,10 +275,10 @@ namespace Constants {
             BUTTON1_BITMASK.emplace_back(createBitmask(BUTTON1_TEXTURE, rect));
         }
         
-        CLOUDBLUE_RECT = sf::IntRect(sf::IntRect{ 0, 0, 410, 232 }); 
+        CLOUDBLUE_RECT = sf::IntRect{ 0, 0, 205, 116 }; 
         CLOUDBLUE_BITMASK = createBitmask(CLOUDBLUE_TEXTURE, CLOUDBLUE_RECT);
 
-        CLOUDPURPLE_RECT = sf::IntRect(sf::IntRect{ 0, 0, 410, 232 }); 
+        CLOUDPURPLE_RECT = sf::IntRect{ 0, 0, 205, 116 }; 
         CLOUDPURPLE_BITMASK = createBitmask(CLOUDPURPLE_TEXTURE, CLOUDPURPLE_RECT);
 
         TILES_SINGLE_RECTS.reserve(TILES_NUMBER); 

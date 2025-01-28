@@ -16,7 +16,7 @@ namespace physics {
         try {
             std::vector<Sprite*> result;
             if (!bounds.intersects(area)) {
-                log_info("Area does not intersect with the quadtree bounds at level " + std::to_string(level));
+               // log_info("Area does not intersect with the quadtree bounds at level " + std::to_string(level));
                 return result;
             }
 
@@ -124,9 +124,13 @@ namespace physics {
     // struct to hold raycast operation results that use vector of sprites
     RaycastResult cachedRaycastResult {}; 
 
+    // // falling objects 
+    // sf::Vector2f freeFall( float speed, sf::Vector2f originalPos){
+    //     return { originalPos.x, originalPos.y += speed * MetaComponents::deltaTime * gravity };
+    // }
     // falling objects 
     sf::Vector2f freeFall( float speed, sf::Vector2f originalPos){
-        return { originalPos.x, originalPos.y += speed * MetaComponents::deltaTime * gravity };
+        return { originalPos.x, originalPos.y += speed * MetaComponents::deltaTime };
     }
 
     // object moving in a direction vector
@@ -335,7 +339,6 @@ namespace physics {
 
                 // Check if the pixels' values are non-zero (i.e., not transparent)
                 if (bitmask1[index1] == 1 && bitmask2[index2] == 1) {
-                // std::cout << "Collision detected at pixel (" << x << ", " << y << ")" << std::endl;
                     return true; // Collision detected
                 }
             }
