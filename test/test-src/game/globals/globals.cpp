@@ -11,11 +11,24 @@ namespace MetaComponents {
 
     sf::FloatRect getViewBounds(){
         return {
-            MetaComponents::view.getCenter().x - MetaComponents::view.getSize().x / 2,
-            MetaComponents::view.getCenter().y - MetaComponents::view.getSize().y / 2,
-            MetaComponents::view.getSize().x,
-            MetaComponents::view.getSize().y
+            view.getCenter().x - view.getSize().x / 2,
+            view.getCenter().y - view.getSize().y / 2,
+            view.getSize().x,
+            view.getSize().y
         };
+    }
+
+    float getViewMinX(){
+        return view.getCenter().x - view.getSize().x / 2;
+    }
+    float getViewMaxX(){
+        return view.getCenter().x + view.getSize().x / 2;
+    }
+    float getViewMinY(){
+        return view.getCenter().y - view.getSize().y / 2;
+    }
+    float getViewMaxY(){
+        return view.getCenter().y + view.getSize().y / 2;       
     }
 }   
 
@@ -60,6 +73,23 @@ namespace Constants {
         return sf::Vector2f{ xPos, yPos }; 
     }
     
+    // make randome position from right side of the screen
+    sf::Vector2f makeRandomPositionCloud() {
+        // Get the bounds of the current view
+        float viewMinX = MetaComponents::getViewMinX();
+        float viewMaxX = MetaComponents::getViewMinX() + MetaComponents::getViewBounds().width;
+        float viewHeight = MetaComponents::getViewBounds().height;
+
+        // Generate a random x-position to the right of the current view,
+        // ensuring the cloud is fully off-screen initially
+        float xPos = static_cast<float>(viewMaxX + std::rand() % 300);
+
+        // Generate a random y-position within the view's height, adjusted to ensure the cloud is fully visible vertically
+        float yPos = static_cast<float>(std::rand() % static_cast<int>(viewHeight - 50));
+
+        return sf::Vector2f{ xPos, yPos };
+    }
+
     void initialize(){
         std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
@@ -129,6 +159,7 @@ namespace Constants {
             CLOUDBLUE_SPEED = config["sprites"]["cloudBlue"]["speed"].as<float>();
             CLOUDBLUE_ACCELERATION= {config["sprites"]["cloudBlue"]["acceleration"]["x"].as<float>(),
                                 config["sprites"]["cloudBlue"]["acceleration"]["y"].as<float>()};
+            CLOUDBLUE_INITIAL_RESPAWN_TIME = config["sprites"]["cloudBlue"]["respawn_time"].as<float>();
 
             // Cloud (purple) settings
             CLOUDPURPLE_PATH = config["sprites"]["cloudPurple"]["path"].as<std::string>();
@@ -142,6 +173,7 @@ namespace Constants {
                                 config["sprites"]["button1"]["position"]["y"].as<float>()};
             BUTTON1_SCALE = {config["sprites"]["button1"]["scale"]["x"].as<float>(),
                             config["sprites"]["button1"]["scale"]["y"].as<float>()};
+            CLOUDPURPLE_INITIAL_RESPAWN_TIME = config["sprites"]["cloudPurple"]["respawn_time"].as<float>();
 
             // Load tile settings
             TILES_PATH = config["tiles"]["path"].as<std::string>();

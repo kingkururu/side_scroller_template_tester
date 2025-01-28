@@ -81,11 +81,13 @@ sprites:
     acceleration:
       x: 2.0 
       y: 2.0
+    respawn_time: 4.0 # seconds
   cloudPurple:
     path: "test/test-assets/sprites/png/cloud2.png"
     position:
       x: 700.0 # pixels 
       y: 300.0 # pixels
+    respawn_time: 3.0 # seconds
 
 # Tile settings
 tiles:
@@ -106,7 +108,7 @@ tilemap:
     y: 600.0 # pixels
   width: 140 # number of grids in a row 
   height: 2 # number of grids in a column 
-  boundary_offset: 10 
+  boundary_offset: 0 
   filepath: "test/test-assets/tiles/tilemap.txt"
   walkable: [false, true, true, false, false, true] #add more inside. if not meeting full size, the rest gets set to false 
 

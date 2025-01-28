@@ -106,8 +106,8 @@ class gamePlayScene : public virtual Scene{
 
   std::unique_ptr<Background> background; 
   std::unique_ptr<Player> player; 
-  std::unique_ptr<Cloud> cloudBlue;
-  std::unique_ptr<Cloud> cloudPurple; 
+  std::vector<std::unique_ptr<Cloud>> cloudBlue;
+  std::vector<std::unique_ptr<Cloud>> cloudPurple; 
 
   std::array<std::shared_ptr<Tile>, Constants::TILES_NUMBER> tiles1;   
   std::unique_ptr<TileMap> tileMap1; 
@@ -118,6 +118,9 @@ class gamePlayScene : public virtual Scene{
   std::unique_ptr<SoundClass> playerJumpSound; 
 
   std::unique_ptr<TextClass> text1; 
+
+  float cloudBlueRespawnTime {};
+  float cloudPurpleRespawnTime {};
 };
 
 // not using right now in test game

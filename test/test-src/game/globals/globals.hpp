@@ -36,6 +36,10 @@ namespace MetaComponents{
     extern sf::View view;
 
     extern sf::FloatRect getViewBounds();
+    extern float getViewMinX();
+    extern float getViewMaxX();
+    extern float getViewMinY();
+    extern float getViewMaxY();
 }
 
 namespace Constants { // not actually "constants" in terms of being fixed, but should never be altered after being read from the config.yaml file
@@ -43,6 +47,7 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
 
     // make random positions each time
     extern sf::Vector2f makeRandomPosition(); 
+    extern sf::Vector2f makeRandomPositionCloud(); 
     extern void writeRandomTileMap(const std::filesystem::path filePath); 
 
     // load textures, fonts, music, and sound
@@ -107,13 +112,15 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     inline std::shared_ptr<sf::Texture> CLOUDBLUE_TEXTURE = std::make_shared<sf::Texture>();
     inline std::shared_ptr<sf::Uint8[]> CLOUDBLUE_BITMASK;
     inline sf::IntRect CLOUDBLUE_RECT;
+    inline float CLOUDBLUE_INITIAL_RESPAWN_TIME;
 
     inline std::filesystem::path CLOUDPURPLE_PATH;
     inline sf::Vector2f CLOUDPURPLE_POSITION;
     inline std::shared_ptr<sf::Texture> CLOUDPURPLE_TEXTURE = std::make_shared<sf::Texture>();
     inline std::shared_ptr<sf::Uint8[]> CLOUDPURPLE_BITMASK;
     inline sf::IntRect CLOUDPURPLE_RECT;
-    
+    inline float CLOUDPURPLE_INITIAL_RESPAWN_TIME;
+
     // Button settings
     inline short BUTTON1_INDEXMAX;
     inline std::filesystem::path BUTTON1_PATH;
