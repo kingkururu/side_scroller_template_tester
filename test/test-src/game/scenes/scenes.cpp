@@ -279,7 +279,7 @@ void gamePlayScene::handleGameEvents() {
     checkCloudCollisions(cloudBlue);
     checkCloudCollisions(cloudPurple);
 
-    // Update falling state based on whether the player is touching any cloud
+    //Update falling state based on whether the player is touching any cloud
     FlagSystem::gameScene1Flags.playerFalling = !touchingCloud;
 } 
 
@@ -319,7 +319,7 @@ void gamePlayScene::changeAnimation(){ // change animation for sprites. change a
 }
 
 void gamePlayScene::updatePlayerAndView() {
-    if(player->getJumpingState() || player->getFallingState()) return; // don't make the view focus on player if player is jumping or falling
+   // if(player->getJumpingState() || player->getFallingState()) return; // don't make the view focus on player if player is jumping or falling
 
     float viewCenterX = player->getSpritePos().x;
     float viewCenterY = player->getSpritePos().y;

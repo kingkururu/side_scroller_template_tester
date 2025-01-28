@@ -277,7 +277,6 @@ namespace Constants {
         
         CLOUDBLUE_RECT = sf::IntRect{ 0, 0, 205, 116 }; 
         CLOUDBLUE_BITMASK = createBitmask(CLOUDBLUE_TEXTURE, CLOUDBLUE_RECT);
-
         CLOUDPURPLE_RECT = sf::IntRect{ 0, 0, 205, 116 }; 
         CLOUDPURPLE_BITMASK = createBitmask(CLOUDPURPLE_TEXTURE, CLOUDPURPLE_RECT);
 
@@ -298,7 +297,7 @@ namespace Constants {
         SPRITE1_BITMASK.reserve(SPRITE1_INDEXMAX); 
         // make bitmasks for tiles 
         for (const auto& rect : SPRITE1_ANIMATIONRECTS ) {
-            SPRITE1_BITMASK.emplace_back(createBitmask(SPRITE1_TEXTURE, rect));
+            SPRITE1_BITMASK.emplace_back(createBitmaskForBottom(SPRITE1_TEXTURE, rect, 0, 3));
         }
         
         log_info("\tConstants initialized ");
@@ -373,22 +372,68 @@ namespace Constants {
         return bitmask;
     }
 
-    void printBitmaskDebug(const std::shared_ptr<sf::Uint8[]>& bitmask, unsigned int width, unsigned int height) {
-        unsigned int bitmaskSize = (width * height + 7) / 8;
-        
-        std::stringstream bitmaskStream; // Use a stringstream to accumulate the bitmask output
+    std::shared_ptr<sf::Uint8[]> createBitmaskForBottom(const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect, const float transparency, int rows) {
+        if (!texture) {
+            log_warning("\tfailed to create bitmask ( texture is empty )");
+            return nullptr;
+        }
 
-        for (unsigned int i = 0; i < bitmaskSize; ++i) {
-            for (int bit = 7; bit >= 0; --bit) { // Print bits from high to low
-                bitmaskStream << ((bitmask[i] & (1 << bit)) ? '1' : '0');
-            }
-            if ((i + 1) % (width / 8) == 0) { // New line after each row
-                bitmaskStream << std::endl;
+        // Ensure the rect is within the bounds of the texture
+        sf::Vector2u textureSize = texture->getSize();
+        if (rect.left < 0 || rect.top < 0 || 
+            rect.left + rect.width > static_cast<int>(textureSize.x) || 
+            rect.top + rect.height > static_cast<int>(textureSize.y)) {
+            log_warning("\tfailed to create bitmask ( rect is out of bounds)");
+            return nullptr;
+        }
+
+        sf::Image image = texture->copyToImage();
+        unsigned int width = rect.width;
+        unsigned int height = rect.height;
+
+        unsigned int bitmaskSize = (width * height) / 8 + ((width * height) % 8 != 0); // rounding up
+        std::shared_ptr<sf::Uint8[]> bitmask(new sf::Uint8[bitmaskSize](), std::default_delete<sf::Uint8[]>());
+
+        // Start processing only the last selected rows of the rectangle
+        unsigned int startRow = (height >= rows) ? height - rows : 0;
+
+        for (unsigned int y = startRow; y < height; ++y) {
+            for (unsigned int x = 0; x < width; ++x) {
+                sf::Color pixelColor = image.getPixel(rect.left + x, rect.top + y);
+                unsigned int bitIndex = y * width + x;
+                unsigned int byteIndex = bitIndex / 8;
+                unsigned int bitPosition = bitIndex % 8;
+
+                // Use transparency threshold if provided, otherwise default to alpha > 128
+                if ((transparency > 0.0f && pixelColor.a >= static_cast<sf::Uint8>(transparency * 255)) || 
+                    (transparency <= 0.0f && pixelColor.a > 128)) {
+                    bitmask[byteIndex] |= (1 << bitPosition);
+                }
             }
         }
-        
-        // Log the accumulated bitmask
-        log_info(bitmaskStream.str());
+
+        return bitmask;
     }
+    void printBitmaskDebug(const std::shared_ptr<sf::Uint8[]>& bitmask, unsigned int width, unsigned int height) {
+    std::stringstream bitmaskStream;
+
+    for (unsigned int y = 0; y < height; ++y) {
+        for (unsigned int x = 0; x < width; ++x) {
+            unsigned int bitIndex = y * width + x;
+            unsigned int byteIndex = bitIndex / 8;
+            int bitPosition = 7 - (bitIndex % 8); // High bit to low bit order
+
+            if (bitmask[byteIndex] & (1 << bitPosition)) {
+                bitmaskStream << '1';
+            } else {
+                bitmaskStream << '0';
+            }
+        }
+        bitmaskStream << std::endl; // Move to the next row
+    }
+
+    log_info(bitmaskStream.str());
+}
+
 }
 
