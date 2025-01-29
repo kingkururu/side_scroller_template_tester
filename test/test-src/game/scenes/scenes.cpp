@@ -323,15 +323,29 @@ void gamePlayScene::changeAnimation(){ // change animation for sprites. change a
 }
 
 void gamePlayScene::updatePlayerAndView() {
-   // if(player->getJumpingState() || player->getFallingState()) return; // don't make the view focus on player if player is jumping or falling
+    // Get the player's position
+    sf::Vector2f playerPos = player->getSpritePos();
 
-    float viewCenterX = player->getSpritePos().x;
-    float viewCenterY = player->getSpritePos().y;
+    // Calculate the view size and game world boundaries
+    sf::Vector2f viewSize = MetaComponents::view.getSize();
+    sf::FloatRect worldBounds(0, 0, Constants::WORLD_WIDTH, Constants::WORLD_HEIGHT);
 
-    // Set the new view center to follow the player's position
-    MetaComponents::view.setCenter(viewCenterX, viewCenterY - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET);
+    // Offset at the bottom of the background to consider any gaps or padding
+    const float bottomOffset = 330.0;
+
+    // Default view center is the player's position
+    sf::Vector2f viewCenter = playerPos;
+
+    // Lock the view within the top and bottom boundaries
+    float minViewY = viewSize.y / 2.0f;
+    float maxViewY = std::max(worldBounds.height - viewSize.y / 2.0f - bottomOffset, minViewY);
+
+    // Clamp the view center's Y-coordinate within valid bounds
+    viewCenter.y = std::clamp(viewCenter.y, minViewY, maxViewY);
+
+    // Update the view center
+    MetaComponents::view.setCenter(viewCenter);
 }
-
 
 void gamePlayScene::updateDrawablesVisibility(){
     try{
