@@ -23,8 +23,8 @@ animation:
 
 # General sprite and text settings
 sprite:
-  out_of_bounds_offset: 110 # pixels 
-  out_of_bounds_adjustment: 100 # pixels 
+  out_of_bounds_offset: 0 # pixels 
+  out_of_bounds_adjustment: 0 # pixels 
   player_y_pos_bounds_run: 440  # SCREEN_HEIGHT - SPRITE_OUT_OF_BOUNDS_ADJUSTMENT
 
 # Background settings

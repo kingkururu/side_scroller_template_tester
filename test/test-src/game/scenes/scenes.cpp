@@ -223,12 +223,12 @@ void gamePlayScene::handleSpaceKey() {
 }
 
 void gamePlayScene::handleMovementKeys() {
+    if(!player->getMoveState()) return; 
+        // move player sprite
     sf::FloatRect background1Bounds = background->getViewBounds(background->returnSpritesShape());
-    sf::FloatRect background2Bounds = background->getViewBounds(background->returnSpritesShape2());
-    sf::FloatRect viewBounds = MetaComponents::getViewBounds();
 
     // Left movement
-    if (FlagSystem::flagEvents.aPressed) {
+    if (FlagSystem::flagEvents.aPressed ) {
         physics::spriteMover(player, physics::moveLeft);
     }
     // Right movement
@@ -242,6 +242,14 @@ void gamePlayScene::handleMovementKeys() {
     // Up movement
     if (FlagSystem::flagEvents.wPressed) {
         physics::spriteMover(player, physics::moveUp);
+    }
+    if(player->getSpritePos().y > background1Bounds.height + background->getSpritePos().y){
+        player->setMoveState(false);
+        std::cout << "player fell off screen" << std::endl;
+    } 
+    else if(player->getSpritePos().y < background->getSpritePos().y){
+        player->changePosition({player->getSpritePos().x, background->getSpritePos().y});
+        player->updatePos();
     }
 }
 
@@ -267,7 +275,6 @@ void gamePlayScene::handleGameEvents() {
         for (const auto& cloud : clouds) {
             if (player) {
                 bool isTouchingThisCloud = physics::collisionHelper(player, cloud, physics::boundingBoxCollision, quadtree);
-                std::cout << isTouchingThisCloud << std::endl;
                 if (isTouchingThisCloud) {
                     touchingCloud = true;
                     break; // Stop checking further once touching a cloud
