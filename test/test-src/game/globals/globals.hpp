@@ -48,6 +48,8 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     // make random positions each time
     extern sf::Vector2f makeRandomPosition(); 
     extern sf::Vector2f makeRandomPositionCloud(); 
+    extern sf::Vector2f makeRandomPositionCoin(); 
+
     extern void writeRandomTileMap(const std::filesystem::path filePath); 
 
     // load textures, fonts, music, and sound
@@ -125,6 +127,18 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     inline sf::IntRect CLOUDPURPLE_RECT;
     inline float CLOUDPURPLE_INITIAL_RESPAWN_TIME;
     inline unsigned short CLOUDPURPLE_LIMIT;
+
+    // COin settings
+    inline std::filesystem::path COIN_PATH;
+    inline sf::Vector2f COIN_POSITION;
+    inline sf::Vector2f COIN_SCALE;
+    inline float COIN_SPEED;
+    inline sf::Vector2f COIN_ACCELERATION;
+    inline std::shared_ptr<sf::Texture> COIN_TEXTURE = std::make_shared<sf::Texture>();
+    inline std::shared_ptr<sf::Uint8[]> COIN_BITMASK;
+    inline sf::IntRect COIN_RECT;
+    inline float COIN_INITIAL_RESPAWN_TIME;
+    inline unsigned short COIN_LIMIT;
 
     // Button settings
     inline short BUTTON1_INDEXMAX;

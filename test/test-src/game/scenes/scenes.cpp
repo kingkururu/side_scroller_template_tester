@@ -96,6 +96,8 @@ void gamePlayScene::createAssets() {
                                           Constants::SPRITE1_ANIMATIONRECTS, Constants::SPRITE1_INDEXMAX, utils::convertToWeakPtrVector(Constants::SPRITE1_BITMASK));
         player->setRects(0); 
 
+        std::weak_ptr<sf::Uint8[]> coinBitmaskWeakPtr = Constants::COIN_BITMASK;  
+        coins.push_back(std::make_unique<Coin>(Constants::COIN_POSITION, Constants::COIN_SCALE, Constants::COIN_TEXTURE, Constants::COIN_SPEED, Constants::COIN_ACCELERATION, coinBitmaskWeakPtr));
         backgroundMusic = std::make_unique<MusicClass>(std::move(Constants::BACKGROUNDMUSIC_MUSIC), Constants::BACKGROUNDMUSIC_VOLUME);
         if(backgroundMusic) backgroundMusic->returnMusic().play(); 
        
@@ -133,6 +135,8 @@ void gamePlayScene::insertItemsInQuadtree(){
 
     for (auto &cloud : cloudBlue) quadtree.insert(cloud);
     for (auto &cloud : cloudPurple) quadtree.insert(cloud);
+
+    for (auto &coin : coins) quadtree.insert(coin);
 }
 
 void gamePlayScene::respawnAssets(){
@@ -143,7 +147,6 @@ void gamePlayScene::respawnAssets(){
         cloudBlue.push_back(std::make_unique<Cloud>(Constants::makeRandomPositionCloud(), Constants::CLOUDBLUE_SCALE, Constants::CLOUDBLUE_TEXTURE, Constants::CLOUDBLUE_SPEED, Constants::CLOUDBLUE_ACCELERATION, cloudBlueBitmaskWeakPtr));
         
         cloudBlueRespawnTime = std::max(newCloudBlueInterval, Constants::CLOUDBLUE_INITIAL_RESPAWN_TIME);
-        std::cout << "made blue cloud" << std::endl;
     }
     if(cloudPurpleRespawnTime <= 0 && cloudPurple.size() < Constants::CLOUDPURPLE_LIMIT){
         float newCloudPurpleInterval = Constants::CLOUDPURPLE_INITIAL_RESPAWN_TIME - MetaComponents::globalTime * 0.38;
@@ -151,8 +154,16 @@ void gamePlayScene::respawnAssets(){
         cloudPurple.push_back(std::make_unique<Cloud>(Constants::makeRandomPositionCloud(), Constants::CLOUDBLUE_SCALE, Constants::CLOUDPURPLE_TEXTURE, Constants::CLOUDBLUE_SPEED, Constants::CLOUDBLUE_ACCELERATION, cloudPurpleBitmaskWeakPtr));
         
         cloudPurpleRespawnTime = std::max(newCloudPurpleInterval, Constants::CLOUDPURPLE_INITIAL_RESPAWN_TIME);
-        std::cout << "made purple cloud" << std::endl;
     }
+    if(coinRespawnTime <= 0 && coins.size() < Constants::COIN_LIMIT){
+        float newCoinInterval = Constants::COIN_INITIAL_RESPAWN_TIME - MetaComponents::globalTime * 0.38;
+        std::weak_ptr<sf::Uint8[]> coinBitmaskWeakPtr = Constants::COIN_BITMASK;  
+        coins.push_back(std::make_unique<Coin>(Constants::makeRandomPositionCoin(), Constants::COIN_SCALE, Constants::COIN_TEXTURE, Constants::COIN_SPEED, Constants::COIN_ACCELERATION, coinBitmaskWeakPtr));
+        
+        coinRespawnTime = std::max(newCoinInterval, Constants::COIN_INITIAL_RESPAWN_TIME);
+    }
+   
+
 } 
 
 void gamePlayScene::handleInvisibleSprites() {
@@ -172,6 +183,14 @@ void gamePlayScene::handleInvisibleSprites() {
             std::cout << cloudPurple.size() << std::endl; 
         }
     }
+    for(auto it = coins.begin(); it != coins.end(); ++it){
+        if(*it && !(*it)->getVisibleState()){
+            (*it)->changePosition(Constants::makeRandomPositionCoin());
+            (*it)->updatePos();
+            (*it)->setVisibleState(true);
+            std::cout << coins.size() << std::endl; 
+        }
+    }
 }
 
 /* Updating time from GameManager's deltatime; it updates sprite respawn times and also counts 
@@ -186,6 +205,7 @@ void gamePlayScene::setTime(){
     
     cloudBlueRespawnTime -= MetaComponents::deltaTime; 
     cloudPurpleRespawnTime -= MetaComponents::deltaTime;
+    coinRespawnTime -= MetaComponents::deltaTime;
 } 
 
 void gamePlayScene::handleInput() {
@@ -266,6 +286,16 @@ void gamePlayScene::handleGameEvents() {
     }
     for(auto it = cloudPurple.begin(); it != cloudPurple.end(); ++it){
         if(*it && (*it)->getSpritePos().x + 300 < MetaComponents::getViewMinX() - Constants::PASSTHROUGH_OFFSET){
+            (*it)->setVisibleState(false);
+        }
+    }
+    for(auto it = coins.begin(); it != coins.end(); ++it){
+        if(*it && (*it)->getSpritePos().x + 300 < MetaComponents::getViewMinX() - Constants::PASSTHROUGH_OFFSET){
+            (*it)->setVisibleState(false);
+        }
+    }
+    for(auto it = coins.begin(); it != coins.end(); ++it){
+        if(physics::collisionHelper(player, *it, physics::boundingBoxCollision, quadtree)){
             (*it)->setVisibleState(false);
         }
     }
@@ -387,6 +417,12 @@ void gamePlayScene::draw() {
         for (auto &cloud : cloudPurple) {
             if (cloud && cloud->getVisibleState()) {
                 window.draw(*cloud); 
+            }
+        }
+
+        for(auto &coin : coins){
+            if(coin && coin->getVisibleState()){
+                window.draw(*coin); 
             }
         }
 

@@ -90,6 +90,23 @@ namespace Constants {
         return sf::Vector2f{ xPos, yPos };
     }
 
+    // make randome position from right side of the screen
+    sf::Vector2f makeRandomPositionCoin() {
+        // Get the bounds of the current view
+        float viewMinX = MetaComponents::getViewMinX();
+        float viewMaxX = MetaComponents::getViewMinX() + MetaComponents::getViewBounds().width;
+        float viewHeight = MetaComponents::getViewBounds().height;
+
+        // Generate a random x-position to the right of the current view,
+        // ensuring the cloud is fully off-screen initially
+        float xPos = static_cast<float>(viewMaxX + std::rand() % 50);
+
+        // Generate a random y-position within the view's height, adjusted to ensure the cloud is fully visible vertically
+        float yPos = static_cast<float>(std::rand() % static_cast<int>(viewHeight - 50));
+
+        return sf::Vector2f{ xPos, yPos };
+    }
+
     void initialize(){
         std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
@@ -167,6 +184,18 @@ namespace Constants {
             CLOUDPURPLE_POSITION = {config["sprites"]["cloudPurple"]["position"]["x"].as<float>(),
                                 config["sprites"]["cloudPurple"]["position"]["y"].as<float>()};
             CLOUDPURPLE_LIMIT = config["sprites"]["cloudPurple"]["limit"].as<unsigned short>();
+
+            // Coin settings
+            COIN_PATH = config["sprites"]["coin"]["path"].as<std::string>();
+            COIN_POSITION = {config["sprites"]["coin"]["position"]["x"].as<float>(),
+                            config["sprites"]["coin"]["position"]["y"].as<float>()};
+            COIN_SCALE = {config["sprites"]["coin"]["scale"]["x"].as<float>(),
+                        config["sprites"]["coin"]["scale"]["y"].as<float>()};
+            COIN_SPEED = config["sprites"]["coin"]["speed"].as<float>();
+            COIN_ACCELERATION = {config["sprites"]["coin"]["acceleration"]["x"].as<float>(),
+                                config["sprites"]["coin"]["acceleration"]["y"].as<float>()};
+            COIN_INITIAL_RESPAWN_TIME = config["sprites"]["coin"]["respawn_time"].as<float>();
+            COIN_LIMIT = config["sprites"]["coin"]["limit"].as<unsigned short>();
 
             // Load button settings
             BUTTON1_INDEXMAX = config["sprites"]["button1"]["index_max"].as<short>();
@@ -247,6 +276,8 @@ namespace Constants {
 
         if (!CLOUDPURPLE_TEXTURE->loadFromFile(CLOUDPURPLE_PATH)) log_warning("Failed to load purple cloud texture");
 
+        if (!COIN_TEXTURE->loadFromFile(COIN_PATH)) log_warning("Failed to load coin texture");
+
         if (!BACKGROUNDMUSIC_MUSIC->openFromFile(BACKGROUNDMUSIC_PATH)) log_warning("Failed to load background music");
 
         if (!PLAYERJUMP_SOUNDBUFF->loadFromFile(PLAYERJUMPSOUND_PATH)) log_warning("Failed to load player jump sound");
@@ -279,6 +310,8 @@ namespace Constants {
         CLOUDBLUE_BITMASK = createBitmask(CLOUDBLUE_TEXTURE, CLOUDBLUE_RECT);
         CLOUDPURPLE_RECT = sf::IntRect{ 0, 0, 205, 116 }; 
         CLOUDPURPLE_BITMASK = createBitmask(CLOUDPURPLE_TEXTURE, CLOUDPURPLE_RECT);
+        COIN_RECT = sf::IntRect{ 0, 0, 50, 50 };
+        COIN_BITMASK = createBitmask(COIN_TEXTURE, COIN_RECT);
 
         TILES_SINGLE_RECTS.reserve(TILES_NUMBER); 
         // Populate individual tile rectangles

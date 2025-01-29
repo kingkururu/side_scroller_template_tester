@@ -23,8 +23,8 @@ animation:
 
 # General sprite and text settings
 sprite:
-  out_of_bounds_offset: 0 # pixels 
-  out_of_bounds_adjustment: 0 # pixels 
+  out_of_bounds_offset: 20 # pixels 
+  out_of_bounds_adjustment: 30 # pixels 
   player_y_pos_bounds_run: 440  # SCREEN_HEIGHT - SPRITE_OUT_OF_BOUNDS_ADJUSTMENT
 
 # Background settings
@@ -90,7 +90,21 @@ sprites:
       y: 300.0 # pixels
     respawn_time: 3.0 # seconds
     limit: 4 # number of clouds
-
+  coin:
+    path: "test/test-assets/sprites/png/coin.png"
+    position:
+      x: 100.0 # pixels 
+      y: 100.0 # pixels
+    scale:
+      x: 1.0
+      y: 1.0
+    speed: 10.0 
+    acceleration:
+      x: 2.0 
+      y: 2.0
+    respawn_time: 2.0 # seconds
+    limit: 5 # number of coins
+    
 # Tile settings
 tiles:
   path: "test/test-assets/tiles/png/Tileset.png"

@@ -163,6 +163,18 @@ private:
     std::weak_ptr<sf::Uint8[]> bitMask;
 };
 
+class Coin : public NonStatic{
+public:
+    explicit Coin(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, float speed, sf::Vector2f acceleration, std::weak_ptr<sf::Uint8[]>& bitMask)
+        : Sprite(position, scale, texture), NonStatic(position, scale, texture, speed, acceleration), bitMask(bitMask) {}
+    ~Coin() override{}; 
+
+    std::shared_ptr<sf::Uint8[]> const getBitmask(size_t index) const override;     
+     
+private: 
+    std::weak_ptr<sf::Uint8[]> bitMask;
+};
+
 // player class deriving from NonStatic; refers to movable player 
 class Player : public NonStatic, public Animated {
  public:

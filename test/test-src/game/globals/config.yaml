@@ -90,7 +90,21 @@ sprites:
       y: 300.0 # pixels
     respawn_time: 3.0 # seconds
     limit: 4 # number of clouds
-
+  coin:
+    path: "test/test-assets/sprites/png/coin.png"
+    position:
+      x: 100.0 # pixels 
+      y: 100.0 # pixels
+    scale:
+      x: 1.0
+      y: 1.0
+    speed: 10.0 
+    acceleration:
+      x: 2.0 
+      y: 2.0
+    respawn_time: 8.0 # seconds
+    limit: 5 # number of coins
+    
 # Tile settings
 tiles:
   path: "test/test-assets/tiles/png/Tileset.png"

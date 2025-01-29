@@ -108,6 +108,7 @@ class gamePlayScene : public virtual Scene{
   std::unique_ptr<Player> player; 
   std::vector<std::unique_ptr<Cloud>> cloudBlue;
   std::vector<std::unique_ptr<Cloud>> cloudPurple; 
+  std::vector<std::unique_ptr<Coin>> coins;
 
   std::array<std::shared_ptr<Tile>, Constants::TILES_NUMBER> tiles1;   
   std::unique_ptr<TileMap> tileMap1; 
@@ -121,6 +122,7 @@ class gamePlayScene : public virtual Scene{
 
   float cloudBlueRespawnTime {};
   float cloudPurpleRespawnTime {};
+  float coinRespawnTime {};
 };
 
 // not using right now in test game
