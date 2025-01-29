@@ -18,7 +18,7 @@
 namespace physics{
 
     class Quadtree {
-     public:
+    public:
         Quadtree(float x, float y, float width, float height, size_t level = 0, size_t maxObjects = 10, size_t maxLevels = 5);
         ~Quadtree(){ clear(); };
 
@@ -50,7 +50,7 @@ namespace physics{
         bool contains(const sf::FloatRect& bounds) const;
         void update(); 
 
-     private:
+    private:
         size_t maxObjects;
         size_t maxLevels;
         size_t level;
@@ -288,5 +288,4 @@ namespace physics{
         
         return false;  // No collision detected
     }
-
 }

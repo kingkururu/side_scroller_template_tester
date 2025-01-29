@@ -76,7 +76,6 @@ namespace Constants {
     // make randome position from right side of the screen
     sf::Vector2f makeRandomPositionCloud() {
         // Get the bounds of the current view
-        float viewMinX = MetaComponents::getViewMinX();
         float viewMaxX = MetaComponents::getViewMinX() + MetaComponents::getViewBounds().width;
         float viewHeight = MetaComponents::getViewBounds().height;
 
@@ -93,7 +92,6 @@ namespace Constants {
     // make randome position from right side of the screen
     sf::Vector2f makeRandomPositionCoin() {
         // Get the bounds of the current view
-        float viewMinX = MetaComponents::getViewMinX();
         float viewMaxX = MetaComponents::getViewMinX() + MetaComponents::getViewBounds().width;
         float viewHeight = MetaComponents::getViewBounds().height;
 

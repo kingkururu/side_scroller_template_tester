@@ -103,7 +103,7 @@ class gamePlayScene : public virtual Scene{
   void updatePlayerAndView(); 
   void updateEntityStates(); 
   void changeAnimation();
-  
+
   void draw() override; 
 
   std::unique_ptr<Background> background; 

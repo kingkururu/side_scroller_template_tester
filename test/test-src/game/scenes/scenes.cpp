@@ -308,7 +308,7 @@ void gamePlayScene::handleGameEvents() {
     setVisibility(coins);
   
     for(auto it = coins.begin(); it != coins.end(); ++it){
-        if(physics::collisionHelper(player, *it, physics::boundingBoxCollision, quadtree)){
+        if(physics::collisionHelper(player, *it, physics::pixelPerfectCollision, quadtree)){
             (*it)->setVisibleState(false);
             coinHitSound->returnSound().play();
         }
@@ -318,7 +318,7 @@ void gamePlayScene::handleGameEvents() {
     auto checkCloudCollisions = [&](const std::vector<std::unique_ptr<Cloud>>& clouds) {
         for (const auto& cloud : clouds) {
             if (player) {
-                bool isTouchingThisCloud = physics::collisionHelper(player, cloud, physics::boundingBoxCollision, quadtree);
+                bool isTouchingThisCloud = physics::collisionHelper(player, cloud, physics::pixelPerfectCollision, quadtree);
                 if (isTouchingThisCloud) {
                     touchingCloud = true;
                     break; // Stop checking further once touching a cloud
@@ -414,39 +414,18 @@ void gamePlayScene::draw() {
     try {
         window.clear(sf::Color::Blue); // set the base baskground color blue
 
-        if (background && background->getVisibleState()) {
-            window.draw(*background); 
-        }
-
-        if(tileMap1) window.draw(*tileMap1);
-
-        if (button1 && button1->getVisibleState()) {
-            window.draw(*button1); 
-        }
-
-        for (auto &cloud : cloudBlue) {
-            if (cloud && cloud->getVisibleState()) {
-                window.draw(*cloud); 
-            }
-        }
-
-        for (auto &cloud : cloudPurple) {
-            if (cloud && cloud->getVisibleState()) {
-                window.draw(*cloud); 
-            }
-        }
-
-        for(auto &coin : coins){
-            if(coin && coin->getVisibleState()){
-                window.draw(*coin); 
-            }
-        }
-
-        if(text1) window.draw(*text1); 
-
-        if (player && player->getVisibleState()) {
-            window.draw(*player); 
-        }
+        auto drawAnythingVisible = [&](auto& drawable) {
+            if (drawable && drawable->getVisibleState()) window.draw(*drawable);
+        };
+    
+        drawAnythingVisible(background);
+        drawAnythingVisible(tileMap1);
+        drawAnythingVisible(text1);
+        drawAnythingVisible(button1);
+        for (auto& cloud : cloudBlue) drawAnythingVisible(cloud);
+        for (auto& cloud : cloudPurple) drawAnythingVisible(cloud);
+        for (auto& coin : coins) drawAnythingVisible(coin);
+        drawAnythingVisible(player);
 
         window.display(); 
     } 
