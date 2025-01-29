@@ -97,7 +97,7 @@ void gamePlayScene::createAssets() {
         player->setRects(0); 
 
         backgroundMusic = std::make_unique<MusicClass>(std::move(Constants::BACKGROUNDMUSIC_MUSIC), Constants::BACKGROUNDMUSIC_VOLUME);
-      //  if(backgroundMusic) backgroundMusic->returnMusic().play(); 
+        if(backgroundMusic) backgroundMusic->returnMusic().play(); 
        
         button1 = std::make_unique<Button>(Constants::BUTTON1_POSITION, Constants::BUTTON1_SCALE, Constants::BUTTON1_TEXTURE, 
                                    Constants::BUTTON1_ANIMATIONRECTS, Constants::BUTTON1_INDEXMAX, 
@@ -131,7 +131,6 @@ void gamePlayScene::insertItemsInQuadtree(){
     quadtree.insert(player);  
     quadtree.insert(button1); 
 
-    //
     for (auto &cloud : cloudBlue) quadtree.insert(cloud);
     for (auto &cloud : cloudPurple) quadtree.insert(cloud);
 }
@@ -160,8 +159,7 @@ void gamePlayScene::handleInvisibleSprites() {
     for(auto it = cloudBlue.begin(); it != cloudBlue.end(); ++it){
         if(*it && !(*it)->getVisibleState()){
             (*it)->changePosition(Constants::makeRandomPositionCloud());
-                    (*it)->updatePos();
-
+            (*it)->updatePos();
             (*it)->setVisibleState(true);
             std::cout << cloudBlue.size() << std::endl; 
         }
@@ -169,8 +167,7 @@ void gamePlayScene::handleInvisibleSprites() {
     for(auto it = cloudPurple.begin(); it != cloudPurple.end(); ++it){
         if(*it && !(*it)->getVisibleState()){
             (*it)->changePosition(Constants::makeRandomPositionCloud());
-                    (*it)->updatePos();
-
+            (*it)->updatePos();
             (*it)->setVisibleState(true);
             std::cout << cloudPurple.size() << std::endl; 
         }
@@ -221,6 +218,7 @@ void gamePlayScene::handleSpaceKey() {
         if (player->getMoveState() && !FlagSystem::gameScene1Flags.playerFalling) {
             physics::spriteMover(player, physics::jump, MetaComponents::spacePressedElapsedTime, Constants::SPRITE1_JUMP_ACCELERATION);
         } 
+        
     }
 }
 
@@ -267,10 +265,13 @@ void gamePlayScene::handleGameEvents() {
     // Lambda to check collision with a vector of unique_ptr<Cloud>
     auto checkCloudCollisions = [&](const std::vector<std::unique_ptr<Cloud>>& clouds) {
         for (const auto& cloud : clouds) {
-            if (player && !touchingCloud) { // Only check if not already touching a cloud
-                touchingCloud = physics::collisionHelper(player, cloud, physics::pixelPerfectCollision, quadtree);
-                std::cout << touchingCloud << std::endl;
-                if (touchingCloud) break; // Stop checking further once touching a cloud
+            if (player) {
+                bool isTouchingThisCloud = physics::collisionHelper(player, cloud, physics::boundingBoxCollision, quadtree);
+                std::cout << isTouchingThisCloud << std::endl;
+                if (isTouchingThisCloud) {
+                    touchingCloud = true;
+                    break; // Stop checking further once touching a cloud
+                }
             }
         }
     };
@@ -286,6 +287,9 @@ void gamePlayScene::handleGameEvents() {
 void gamePlayScene::handleSceneFlags(){
     if(FlagSystem::gameScene1Flags.playerFalling) {
         physics::spriteMover(player, physics::freeFall); 
+    }
+    if(MetaComponents::spacePressedElapsedTime == MetaComponents::deltaTime){
+        if(player && playerJumpSound) playerJumpSound->returnSound().play();
     }
 }
 
