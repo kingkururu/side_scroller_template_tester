@@ -188,6 +188,10 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     inline std::filesystem::path PLAYERJUMPSOUND_PATH;
     inline float PLAYERJUMPSOUND_VOLUME;
     inline std::shared_ptr<sf::SoundBuffer> PLAYERJUMP_SOUNDBUFF = std::make_shared<sf::SoundBuffer>();
+
+    inline std::filesystem::path COINHITSOUND_PATH;
+    inline float COINHITSOUND_VOLUME;
+    inline std::shared_ptr<sf::SoundBuffer> COINHIT_SOUNDBUFF = std::make_shared<sf::SoundBuffer>();
 }
 
 // New namespace for flag events

@@ -102,7 +102,7 @@ sprites:
     acceleration:
       x: 2.0 
       y: 2.0
-    respawn_time: 2.0 # seconds
+    respawn_time: 8.0 # seconds
     limit: 5 # number of coins
     
 # Tile settings
@@ -149,3 +149,7 @@ sound:
   player_jump:
     path: "test/test-assets/sound/wav/jump.wav"
     volume: 90.0 # percent
+  coin_hit:
+    path: "test/test-assets/sound/wav/coin.wav"
+    volume: 90.0 # percent
+    

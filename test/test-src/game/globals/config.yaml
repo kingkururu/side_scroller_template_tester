@@ -149,3 +149,7 @@ sound:
   player_jump:
     path: "test/test-assets/sound/wav/jump.wav"
     volume: 90.0 # percent
+  coin_hit:
+    path: "test/test-assets/sound/wav/coin.wav"
+    volume: 90.0 # percent
+    

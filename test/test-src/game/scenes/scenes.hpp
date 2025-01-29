@@ -39,6 +39,7 @@ class Scene {
   FlagSystem::SceneEvents sceneEvents; // scene's own flag events
 
   // blank templates here
+  virtual void setInitialTimes(){};
   virtual void insertItemsInQuadtree(){}; 
   virtual void handleInvisibleSprites(){};  
 
@@ -81,6 +82,7 @@ class gamePlayScene : public virtual Scene{
   void createAssets() override; 
 
  private:
+  void setInitialTimes() override;
   void insertItemsInQuadtree() override; 
 
   void handleInput() override; 
@@ -117,6 +119,7 @@ class gamePlayScene : public virtual Scene{
 
   std::unique_ptr<MusicClass> backgroundMusic;
   std::unique_ptr<SoundClass> playerJumpSound; 
+  std::unique_ptr<SoundClass> coinHitSound; 
 
   std::unique_ptr<TextClass> text1; 
 

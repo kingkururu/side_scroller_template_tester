@@ -1,43 +1,41 @@
-[2025-01-29 19:35:51.619] [info_logger] [info] Succesfuly read yaml file
-[2025-01-29 19:35:51.686] [info_logger] [info] 	Constants initialized 
-[2025-01-29 19:35:51.768] [info_logger] [info] scene made
-[2025-01-29 19:35:51.768] [info_logger] [info] scene made
-[2025-01-29 19:35:51.768] [info_logger] [info] scene made
-[2025-01-29 19:35:51.768] [info_logger] [info] 	Game initialized
-[2025-01-29 19:35:51.768] [info_logger] [info] Sprite initialized successfully
-[2025-01-29 19:35:51.768] [info_logger] [info] Sprite initialized successfully
-[2025-01-29 19:35:51.768] [info_logger] [info] Sprite initialized successfully
-[2025-01-29 19:35:51.768] [info_logger] [info] Background created
-[2025-01-29 19:35:51.768] [info_logger] [info] Sprite initialized successfully
-[2025-01-29 19:35:51.768] [info_logger] [info] Sprite initialized successfully
-[2025-01-29 19:35:51.768] [info_logger] [info] Music initialized successfully, volume is 80.000000
-[2025-01-29 19:35:51.768] [info_logger] [info] Sprite initialized successfully
-[2025-01-29 19:35:51.769] [info_logger] [info] Tile map initialized successfully
-[2025-01-29 19:35:51.769] [info_logger] [info] Sound initialized successfully
-[2025-01-29 19:35:51.769] [info_logger] [info] text initialized successully
-[2025-01-29 19:35:51.769] [info_logger] [info] initializing assets in scene 1: 0.373000ms
-[2025-01-29 19:35:51.769] [info_logger] [info] Sprite inserted into quadtree node.
-[2025-01-29 19:35:51.769] [info_logger] [info] Sprite inserted into quadtree node.
-[2025-01-29 19:35:51.769] [info_logger] [info] Sprite inserted into quadtree node.
-[2025-01-29 19:35:51.769] [info_logger] [info] Sprite inserted into quadtree node.
-[2025-01-29 19:35:51.769] [info_logger] [info] Sprite inserted into quadtree node.
-[2025-01-29 19:35:51.769] [info_logger] [info] Sprite initialized successfully
-[2025-01-29 19:35:51.769] [info_logger] [info] Background created
-[2025-01-29 19:35:51.795] [info_logger] [info] Sprite initialized successfully
-[2025-01-29 19:35:53.785] [info_logger] [info] Sprite initialized successfully
-[2025-01-29 19:35:54.631] [info_logger] [info] Sprite initialized successfully
-[2025-01-29 19:35:55.634] [info_logger] [info] Sprite initialized successfully
-[2025-01-29 19:35:55.790] [info_logger] [info] Sprite initialized successfully
-[2025-01-29 19:35:57.638] [info_logger] [info] Sprite initialized successfully
-[2025-01-29 19:35:57.794] [info_logger] [info] Sprite initialized successfully
-[2025-01-29 19:35:59.642] [info_logger] [info] Sprite initialized successfully
-[2025-01-29 19:36:00.643] [info_logger] [info] Sprite initialized successfully
-[2025-01-29 19:36:14.508] [info_logger] [info] Window close event detected.
-[2025-01-29 19:36:14.552] [info_logger] [info] 	Game Ended
+[2025-01-29 20:21:42.876] [info_logger] [info] Succesfuly read yaml file
+[2025-01-29 20:21:42.941] [info_logger] [info] 	Constants initialized 
+[2025-01-29 20:21:42.975] [info_logger] [info] scene made
+[2025-01-29 20:21:42.975] [info_logger] [info] scene made
+[2025-01-29 20:21:42.975] [info_logger] [info] scene made
+[2025-01-29 20:21:42.975] [info_logger] [info] 	Game initialized
+[2025-01-29 20:21:42.975] [info_logger] [info] Sprite initialized successfully
+[2025-01-29 20:21:42.975] [info_logger] [info] Sprite initialized successfully
+[2025-01-29 20:21:42.975] [info_logger] [info] Sprite initialized successfully
+[2025-01-29 20:21:42.975] [info_logger] [info] Sprite initialized successfully
+[2025-01-29 20:21:42.975] [info_logger] [info] Background created
+[2025-01-29 20:21:42.975] [info_logger] [info] Sprite initialized successfully
+[2025-01-29 20:21:42.975] [info_logger] [info] Sprite initialized successfully
+[2025-01-29 20:21:42.975] [info_logger] [info] Tile map initialized successfully
+[2025-01-29 20:21:42.975] [info_logger] [info] Music initialized successfully, volume is 80.000000
+[2025-01-29 20:21:42.976] [info_logger] [info] Sound initialized successfully
+[2025-01-29 20:21:42.976] [info_logger] [info] Sound initialized successfully
+[2025-01-29 20:21:42.976] [info_logger] [info] text initialized successully
+[2025-01-29 20:21:42.976] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-29 20:21:42.976] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-29 20:21:42.976] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-29 20:21:42.976] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-29 20:21:42.976] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-29 20:21:42.976] [info_logger] [info] initializing assets in scene 1: 0.489000ms
+[2025-01-29 20:21:42.976] [info_logger] [info] Sprite initialized successfully
+[2025-01-29 20:21:42.976] [info_logger] [info] Background created
+[2025-01-29 20:21:45.890] [info_logger] [info] Sprite initialized successfully
+[2025-01-29 20:21:46.892] [info_logger] [info] Sprite initialized successfully
+[2025-01-29 20:21:48.900] [info_logger] [info] Sprite initialized successfully
+[2025-01-29 20:21:50.886] [info_logger] [info] Sprite initialized successfully
+[2025-01-29 20:21:50.903] [info_logger] [info] Sprite initialized successfully
+[2025-01-29 20:21:51.909] [info_logger] [info] Sprite initialized successfully
+[2025-01-29 20:21:55.679] [info_logger] [info] Window close event detected.
+[2025-01-29 20:21:55.689] [info_logger] [info] 	Game Ended
 
-[2025-01-29 19:36:14.552] [info_logger] [info] objects cleared.
-[2025-01-29 19:36:14.552] [info_logger] [info] Quadtree cleared.
-[2025-01-29 19:36:14.560] [info_logger] [info] objects cleared.
-[2025-01-29 19:36:14.560] [info_logger] [info] Quadtree cleared.
-[2025-01-29 19:36:14.560] [info_logger] [info] objects cleared.
-[2025-01-29 19:36:14.560] [info_logger] [info] Quadtree cleared.
+[2025-01-29 20:21:55.689] [info_logger] [info] objects cleared.
+[2025-01-29 20:21:55.689] [info_logger] [info] Quadtree cleared.
+[2025-01-29 20:21:55.689] [info_logger] [info] objects cleared.
+[2025-01-29 20:21:55.689] [info_logger] [info] Quadtree cleared.
+[2025-01-29 20:21:55.689] [info_logger] [info] objects cleared.
+[2025-01-29 20:21:55.689] [info_logger] [info] Quadtree cleared.

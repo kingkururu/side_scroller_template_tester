@@ -249,6 +249,9 @@ namespace Constants {
             // Load sound settings
             PLAYERJUMPSOUND_PATH = config["sound"]["player_jump"]["path"].as<std::string>();
             PLAYERJUMPSOUND_VOLUME = config["sound"]["player_jump"]["volume"].as<float>();
+
+            COINHITSOUND_PATH = config["sound"]["coin_hit"]["path"].as<std::string>();
+            COINHITSOUND_VOLUME = config["sound"]["coin_hit"]["volume"].as<float>();
             
             log_info("Succesfuly read yaml file");
         } 
@@ -282,6 +285,8 @@ namespace Constants {
 
         if (!PLAYERJUMP_SOUNDBUFF->loadFromFile(PLAYERJUMPSOUND_PATH)) log_warning("Failed to load player jump sound");
 
+        if (!COINHIT_SOUNDBUFF->loadFromFile(COINHITSOUND_PATH)) log_warning("Failed to load coin hit sound");
+
         if (!TEXT_FONT->loadFromFile(TEXT_PATH)) log_warning("Failed to load text font");
     }
 
@@ -310,7 +315,7 @@ namespace Constants {
         CLOUDBLUE_BITMASK = createBitmask(CLOUDBLUE_TEXTURE, CLOUDBLUE_RECT);
         CLOUDPURPLE_RECT = sf::IntRect{ 0, 0, 205, 116 }; 
         CLOUDPURPLE_BITMASK = createBitmask(CLOUDPURPLE_TEXTURE, CLOUDPURPLE_RECT);
-        COIN_RECT = sf::IntRect{ 0, 0, 50, 50 };
+        COIN_RECT = sf::IntRect{ 0, 0, 20, 20 };
         COIN_BITMASK = createBitmask(COIN_TEXTURE, COIN_RECT);
 
         TILES_SINGLE_RECTS.reserve(TILES_NUMBER); 
