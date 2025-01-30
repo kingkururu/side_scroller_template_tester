@@ -183,6 +183,8 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     inline std::filesystem::path BACKGROUNDMUSIC_PATH;
     inline float BACKGROUNDMUSIC_VOLUME;
     inline std::unique_ptr<sf::Music> BACKGROUNDMUSIC_MUSIC = std::make_unique<sf::Music>(); 
+    inline bool BACKGROUNDMUSIC_LOOP;
+    inline float BACKGROUNDMUSIC_ENDINGVOLUME;
 
     // Sound settings
     inline std::filesystem::path PLAYERJUMPSOUND_PATH;

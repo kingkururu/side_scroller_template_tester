@@ -252,6 +252,7 @@ public:
 
     void setClickedBool(bool click) { clicked = click; }
     bool getClickedBool() const { return clicked; }
+    void setPosition(sf::Vector2f newPos) { position = newPos; spriteCreated->setPosition(position); }
     
 private:
     bool clicked {}; 

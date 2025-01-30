@@ -118,10 +118,15 @@ class gamePlayScene : public virtual Scene{
   std::unique_ptr<Button> button1;  
 
   std::unique_ptr<MusicClass> backgroundMusic;
+
   std::unique_ptr<SoundClass> playerJumpSound; 
   std::unique_ptr<SoundClass> coinHitSound; 
+  std::unique_ptr<SoundClass> playerDeadSound;
+  std::unique_ptr<SoundClass> buttonClickSound; //
 
-  std::unique_ptr<TextClass> text1; 
+  std::unique_ptr<TextClass> introText; 
+  std::unique_ptr<TextClass> scoreText; //
+  std::unique_ptr<TextClass> endingText; //
 
   float cloudBlueRespawnTime {};
   float cloudPurpleRespawnTime {};

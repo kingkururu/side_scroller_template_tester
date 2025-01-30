@@ -243,7 +243,9 @@ namespace Constants {
             // Load music settings
             BACKGROUNDMUSIC_PATH = config["music"]["background_music"]["path"].as<std::string>();
             BACKGROUNDMUSIC_VOLUME = config["music"]["background_music"]["volume"].as<float>();
-
+            BACKGROUNDMUSIC_LOOP = config["music"]["background_music"]["loop"].as<bool>();
+            BACKGROUNDMUSIC_ENDINGVOLUME = config["music"]["background_music"]["ending_volume"].as<float>();
+            
             // Load sound settings
             PLAYERJUMPSOUND_PATH = config["sound"]["player_jump"]["path"].as<std::string>();
             PLAYERJUMPSOUND_VOLUME = config["sound"]["player_jump"]["volume"].as<float>();
