@@ -158,6 +158,7 @@ public:
     ~Cloud() override{}; 
 
     std::shared_ptr<sf::Uint8[]> const getBitmask(size_t index) const override;     
+    bool getMoveState() const { return true; }
      
 private: 
     std::weak_ptr<sf::Uint8[]> bitMask;
@@ -254,7 +255,7 @@ public:
     bool getClickedBool() const { return clicked; }
     void setPosition(sf::Vector2f newPos) { position = newPos; spriteCreated->setPosition(position); }
     void updatePos() { spriteCreated->setPosition(position); }
-    
+
 private:
     bool clicked {}; 
 }; 

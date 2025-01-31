@@ -280,12 +280,13 @@ namespace physics{
                             return true;
                         }
                     } else if constexpr (std::is_invocable_v<CollisionType, std::shared_ptr<sf::Uint8[]>, sf::Vector2f, sf::Vector2f, std::shared_ptr<sf::Uint8[]>, sf::Vector2f, sf::Vector2f>) { // pixel perfect collision
+                      //  log_info("checking collision");
                         return collisionFunc(bitmask1, position1, size1, bitmask2, position2, size2);
                     }
                 }
             }
         }
-        
+        log_warning("no collision applicable");
         return false;  // No collision detected
     }
 }

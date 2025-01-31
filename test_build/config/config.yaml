@@ -142,7 +142,7 @@ ending_text:
   font_path: "test/test-assets/fonts/ttf/font1.ttf"
   message: "Game Over" # actual content in the text
   position:
-    x: 0.0 # pixels 
+    x: 200.0 # pixels 
     y: 200.0 # pixels 
   color: "RED" # sf::Color
 score_text:
@@ -150,8 +150,8 @@ score_text:
   font_path: "test/test-assets/fonts/ttf/font1.ttf"
   message: "Score: " # actual content in the text
   position:
-    x: 0.0 # pixels 
-    y: 0.0 # pixels 
+    x: 500.0 # pixels 
+    y: 100.0 # pixels 
   color: "WHITE" # sf::Color
 
 # Music settings
@@ -176,4 +176,3 @@ sound:
   player_dead:
     path: "test/test-assets/sound/wav/playerDead.wav"
     volume: 90.0 # percent
-    

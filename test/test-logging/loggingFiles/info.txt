@@ -1,92 +1,76 @@
-[2025-01-31 18:49:18.537] [info_logger] [info] Succesfuly read yaml file
-[2025-01-31 18:49:18.611] [info_logger] [info] 	Constants initialized 
-[2025-01-31 18:49:18.648] [info_logger] [info] scene made
-[2025-01-31 18:49:18.648] [info_logger] [info] scene made
-[2025-01-31 18:49:18.648] [info_logger] [info] scene made
-[2025-01-31 18:49:18.648] [info_logger] [info] 	Game initialized
-[2025-01-31 18:49:18.648] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:49:18.648] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:49:18.648] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:49:18.648] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:49:18.648] [info_logger] [info] Background created
-[2025-01-31 18:49:18.648] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:49:18.648] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:49:18.649] [info_logger] [info] Tile map initialized successfully
-[2025-01-31 18:49:18.649] [info_logger] [info] Music initialized successfully, volume is 80.000000
-[2025-01-31 18:49:18.649] [info_logger] [info] Sound initialized successfully
-[2025-01-31 18:49:18.649] [info_logger] [info] Sound initialized successfully
-[2025-01-31 18:49:18.649] [info_logger] [info] text initialized successully
-[2025-01-31 18:49:18.649] [info_logger] [info] Sprite inserted into quadtree node.
-[2025-01-31 18:49:18.649] [info_logger] [info] Sprite inserted into quadtree node.
-[2025-01-31 18:49:18.649] [info_logger] [info] Sprite inserted into quadtree node.
-[2025-01-31 18:49:18.649] [info_logger] [info] Sprite inserted into quadtree node.
-[2025-01-31 18:49:18.649] [info_logger] [info] Sprite inserted into quadtree node.
-[2025-01-31 18:49:18.649] [info_logger] [info] initializing assets in scene 1: 0.491000ms
-[2025-01-31 18:49:18.649] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:49:18.649] [info_logger] [info] Background created
-[2025-01-31 18:49:21.536] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:49:22.538] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:49:23.771] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:23.790] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:23.806] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:23.826] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:23.841] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:23.861] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:23.877] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:23.893] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:23.911] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:23.929] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:23.947] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:23.965] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:23.982] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.000] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.018] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.035] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.053] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.071] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.089] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.106] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.124] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.142] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.160] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.177] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.195] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.212] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.230] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.248] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.266] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.283] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.300] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.318] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.335] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.353] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.370] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.388] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.406] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.423] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.441] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.459] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.476] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.493] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.511] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.529] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.546] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:49:24.547] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.564] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.582] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.599] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.617] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.635] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.652] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.670] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:24.689] [info_logger] [info] button clicked
-[2025-01-31 18:49:24.689] [info_logger] [info] Music volume set to 20.000000
-[2025-01-31 18:49:27.887] [info_logger] [info] Window close event detected.
-[2025-01-31 18:49:27.926] [info_logger] [info] 	Game Ended
+[2025-01-31 21:49:56.418] [info_logger] [info] Succesfuly read yaml file
+[2025-01-31 21:49:56.486] [info_logger] [info] 	Constants initialized 
+[2025-01-31 21:49:56.553] [info_logger] [info] scene made
+[2025-01-31 21:49:56.553] [info_logger] [info] scene made
+[2025-01-31 21:49:56.553] [info_logger] [info] scene made
+[2025-01-31 21:49:56.553] [info_logger] [info] 	Game initialized
+[2025-01-31 21:49:56.553] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 21:49:56.553] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 21:49:56.553] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 21:49:56.553] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 21:49:56.553] [info_logger] [info] Background created
+[2025-01-31 21:49:56.553] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 21:49:56.553] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 21:49:56.553] [info_logger] [info] Tile map initialized successfully
+[2025-01-31 21:49:56.553] [info_logger] [info] Music initialized successfully, volume is 80.000000
+[2025-01-31 21:49:56.553] [info_logger] [info] Sound initialized successfully
+[2025-01-31 21:49:56.553] [info_logger] [info] Sound initialized successfully
+[2025-01-31 21:49:56.554] [info_logger] [info] Sound initialized successfully
+[2025-01-31 21:49:56.554] [info_logger] [info] text initialized successully
+[2025-01-31 21:49:56.554] [info_logger] [info] text initialized successully
+[2025-01-31 21:49:56.554] [info_logger] [info] text initialized successully
+[2025-01-31 21:49:56.554] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-31 21:49:56.554] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-31 21:49:56.554] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-31 21:49:56.554] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-31 21:49:56.554] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-31 21:49:56.554] [info_logger] [info] initializing assets in scene 1: 0.507000ms
+[2025-01-31 21:49:56.554] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 21:49:56.554] [info_logger] [info] Background created
+[2025-01-31 21:49:59.420] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 21:49:59.420] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-31 21:50:00.422] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 21:50:00.422] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-31 21:50:01.670] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.685] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.704] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.720] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.739] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.755] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.774] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.790] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.810] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.826] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.844] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.861] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.877] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.897] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.913] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.931] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.948] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.966] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:01.985] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:02.002] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:02.019] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:02.036] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:02.054] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:02.072] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:02.089] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:02.107] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:02.125] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:02.142] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:02.160] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:02.177] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:02.195] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:02.212] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:02.229] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:02.247] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:02.265] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:02.284] [info_logger] [info] button clicked
+[2025-01-31 21:50:02.285] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 21:50:03.891] [info_logger] [info] Window close event detected.
+[2025-01-31 21:50:03.935] [info_logger] [info] 	Game Ended
 
-[2025-01-31 18:49:27.926] [info_logger] [info] objects cleared.
-[2025-01-31 18:49:27.926] [info_logger] [info] Quadtree cleared.
-[2025-01-31 18:49:27.932] [info_logger] [info] objects cleared.
-[2025-01-31 18:49:27.932] [info_logger] [info] Quadtree cleared.
-[2025-01-31 18:49:27.932] [info_logger] [info] objects cleared.
-[2025-01-31 18:49:27.932] [info_logger] [info] Quadtree cleared.
+[2025-01-31 21:50:03.935] [info_logger] [info] objects cleared.
+[2025-01-31 21:50:03.935] [info_logger] [info] Quadtree cleared.
+[2025-01-31 21:50:03.944] [info_logger] [info] objects cleared.

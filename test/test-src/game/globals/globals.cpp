@@ -240,6 +240,18 @@ namespace Constants {
                             config["text"]["position"]["y"].as<float>()};
             TEXT_COLOR = SpriteComponents::toSfColor(config["text"]["color"].as<std::string>());
 
+            SCORETEXT_SIZE = config["score_text"]["size"].as<unsigned short>();
+            SCORETEXT_MESSAGE = config["score_text"]["message"].as<std::string>();
+            SCORETEXT_POSITION = {config["score_text"]["position"]["x"].as<float>(),
+                                config["score_text"]["position"]["y"].as<float>()};
+            SCORETEXT_COLOR = SpriteComponents::toSfColor(config["score_text"]["color"].as<std::string>());
+
+            ENDINGTEXT_SIZE = config["ending_text"]["size"].as<unsigned short>();
+            ENDINGTEXT_MESSAGE = config["ending_text"]["message"].as<std::string>();
+            ENDINGTEXT_POSITION = {config["ending_text"]["position"]["x"].as<float>(),
+                                config["ending_text"]["position"]["y"].as<float>()};
+            ENDINGTEXT_COLOR = SpriteComponents::toSfColor(config["ending_text"]["color"].as<std::string>());                    
+
             // Load music settings
             BACKGROUNDMUSIC_PATH = config["music"]["background_music"]["path"].as<std::string>();
             BACKGROUNDMUSIC_VOLUME = config["music"]["background_music"]["volume"].as<float>();
@@ -252,6 +264,9 @@ namespace Constants {
 
             COINHITSOUND_PATH = config["sound"]["coin_hit"]["path"].as<std::string>();
             COINHITSOUND_VOLUME = config["sound"]["coin_hit"]["volume"].as<float>();
+
+            BUTTONCLICKSOUND_PATH = config["sound"]["button_click"]["path"].as<std::string>();
+            BUTTONCLICKSOUND_VOLUME = config["sound"]["button_click"]["volume"].as<float>();
             
             log_info("Succesfuly read yaml file");
         } 
@@ -265,28 +280,25 @@ namespace Constants {
     }
 
     void loadAssets(){  // load all sprites textures and stuff across scenes 
+        // sprites
         if (!BACKGROUND_TEXTURE->loadFromFile(BACKGROUNDSPRITE_PATH)) log_warning("Failed to load background texture");
-
         if (!BACKGROUND_TEXTURE2->loadFromFile(BACKGROUNDSPRITE_PATH2)) log_warning("Failed to load background2 texture");
-        
         if (!BUTTON1_TEXTURE->loadFromFile(BUTTON1_PATH)) log_warning("Failed to load button texture");
-
         if (!SPRITE1_TEXTURE->loadFromFile(SPRITE1_PATH)) log_warning("Failed to load sprite1 texture");
-
         if (!TILES_TEXTURE->loadFromFile(TILES_PATH)) log_warning("Failed to load tiles texture");
-
         if (!CLOUDBLUE_TEXTURE->loadFromFile(CLOUDBLUE_PATH)) log_warning("Failed to load blue cloud texture");
-
         if (!CLOUDPURPLE_TEXTURE->loadFromFile(CLOUDPURPLE_PATH)) log_warning("Failed to load purple cloud texture");
-
         if (!COIN_TEXTURE->loadFromFile(COIN_PATH)) log_warning("Failed to load coin texture");
-
+        
+        // music
         if (!BACKGROUNDMUSIC_MUSIC->openFromFile(BACKGROUNDMUSIC_PATH)) log_warning("Failed to load background music");
 
+        // sounds
         if (!PLAYERJUMP_SOUNDBUFF->loadFromFile(PLAYERJUMPSOUND_PATH)) log_warning("Failed to load player jump sound");
-
         if (!COINHIT_SOUNDBUFF->loadFromFile(COINHITSOUND_PATH)) log_warning("Failed to load coin hit sound");
-
+        if (!BUTTONCLICK_SOUNDBUFF->loadFromFile(BUTTONCLICKSOUND_PATH)) log_warning("Failed to load button click sound");
+        
+        // font
         if (!TEXT_FONT->loadFromFile(TEXT_PATH)) log_warning("Failed to load text font");
     }
 

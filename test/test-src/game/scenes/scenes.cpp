@@ -119,10 +119,14 @@ void gamePlayScene::createAssets() {
 
         playerJumpSound = std::make_unique<SoundClass>(Constants::PLAYERJUMP_SOUNDBUFF, Constants::PLAYERJUMPSOUND_VOLUME); 
         coinHitSound = std::make_unique<SoundClass>(Constants::COINHIT_SOUNDBUFF, Constants::COINHITSOUND_VOLUME); 
-        
+        buttonClickSound = std::make_unique<SoundClass>(Constants::BUTTONCLICK_SOUNDBUFF, Constants::BUTTONCLICKSOUND_VOLUME);
+
         // Text
         introText = std::make_unique<TextClass>(Constants::TEXT_POSITION, Constants::TEXT_SIZE, Constants::TEXT_COLOR, Constants::TEXT_FONT, Constants::TEXT_MESSAGE);
-        
+        scoreText = std::make_unique<TextClass>(Constants::SCORETEXT_POSITION, Constants::SCORETEXT_SIZE, Constants::SCORETEXT_COLOR, Constants::TEXT_FONT, Constants::SCORETEXT_MESSAGE);
+        endingText = std::make_unique<TextClass>(Constants::ENDINGTEXT_POSITION, Constants::ENDINGTEXT_SIZE, Constants::ENDINGTEXT_COLOR, Constants::TEXT_FONT, Constants::ENDINGTEXT_MESSAGE);
+        endingText->setVisibleState(false);
+
         insertItemsInQuadtree(); 
         setInitialTimes();
 
@@ -153,47 +157,24 @@ void gamePlayScene::respawnAssets(){
         float newCloudBlueInterval = Constants::CLOUDBLUE_INITIAL_RESPAWN_TIME - MetaComponents::globalTime * 0.38;
         std::weak_ptr<sf::Uint8[]> cloudBlueBitmaskWeakPtr = Constants::CLOUDBLUE_BITMASK;  
         cloudBlue.push_back(std::make_unique<Cloud>(Constants::makeRandomPositionCloud(), Constants::CLOUDBLUE_SCALE, Constants::CLOUDBLUE_TEXTURE, Constants::CLOUDBLUE_SPEED, Constants::CLOUDBLUE_ACCELERATION, cloudBlueBitmaskWeakPtr));
-        
+        quadtree.insert(cloudBlue[cloudBlue.size() - 1]);
         cloudBlueRespawnTime = std::max(newCloudBlueInterval, Constants::CLOUDBLUE_INITIAL_RESPAWN_TIME);
     }
     if(cloudPurpleRespawnTime <= 0 && cloudPurple.size() < Constants::CLOUDPURPLE_LIMIT){
         float newCloudPurpleInterval = Constants::CLOUDPURPLE_INITIAL_RESPAWN_TIME - MetaComponents::globalTime * 0.38;
         std::weak_ptr<sf::Uint8[]> cloudPurpleBitmaskWeakPtr = Constants::CLOUDPURPLE_BITMASK;  
         cloudPurple.push_back(std::make_unique<Cloud>(Constants::makeRandomPositionCloud(), Constants::CLOUDBLUE_SCALE, Constants::CLOUDPURPLE_TEXTURE, Constants::CLOUDBLUE_SPEED, Constants::CLOUDBLUE_ACCELERATION, cloudPurpleBitmaskWeakPtr));
-        
+        quadtree.insert(cloudPurple[cloudPurple.size() - 1]);
         cloudPurpleRespawnTime = std::max(newCloudPurpleInterval, Constants::CLOUDPURPLE_INITIAL_RESPAWN_TIME);
     }
     if(coinRespawnTime <= 0 && coins.size() < Constants::COIN_LIMIT){
         float newCoinInterval = Constants::COIN_INITIAL_RESPAWN_TIME - MetaComponents::globalTime * 0.38;
         std::weak_ptr<sf::Uint8[]> coinBitmaskWeakPtr = Constants::COIN_BITMASK;  
         coins.push_back(std::make_unique<Coin>(Constants::makeRandomPositionCoin(), Constants::COIN_SCALE, Constants::COIN_TEXTURE, Constants::COIN_SPEED, Constants::COIN_ACCELERATION, coinBitmaskWeakPtr));
-        
+        quadtree.insert(coins[coins.size() - 1]);
         coinRespawnTime = std::max(newCoinInterval, Constants::COIN_INITIAL_RESPAWN_TIME);
     }
 } 
-
-// void gamePlayScene::respawnAssets() {
-//     // Lambda to handle asset respawning logic
-//     auto respawnAsset = [&](auto& assetList, float& respawnTime, float initialRespawnTime,
-//                             std::function<sf::Vector2f()> makeRandomPosition, const sf::Vector2f scale, const sf::Texture texture, const sf::Vector2f speed, const sf::Vector2f acceleration, const std::weak_ptr<sf::Uint8[]>& bitmask,
-//                             unsigned short limit) {
-//         if (respawnTime <= 0 && assetList.size() < limit) {
-//             float newInterval = initialRespawnTime - MetaComponents::globalTime * 0.38;
-//             std::weak_ptr<sf::Uint8[]> ptr = bitmask;
-            
-//             // Assuming AssetType is the type of objects in assetList
-//             using AssetType = typename std::remove_pointer<decltype(assetList)::value_type>::type;
-
-//             assetList.push_back(std::make_unique<AssetType>(Constants::makeRandomPosition(), scale, *texture, speed, acceleration, ptr));
-//             respawnTime = std::max(newInterval, initialRespawnTime);
-//         }
-//     };
-
-//     // Respawn logic for each asset type
-//     respawnAsset(cloudBlue, cloudBlueRespawnTime, Constants::CLOUDBLUE_INITIAL_RESPAWN_TIME,
-//                  Constants::makeRandomPositionCloud, Constants::CLOUDBLUE_SCALE, Constants::CLOUDBLUE_TEXTURE, Constants::CLOUDBLUE_SPEED, Constants::CLOUDBLUE_ACCELERATION, Constants::CLOUDBLUE_BITMASK,
-//                  Constants::CLOUDBLUE_LIMIT);
-// }
 
 void gamePlayScene::handleInvisibleSprites() {
     auto resetPosition = [&](auto& assetList, std::function<sf::Vector2f()> positionCallback) {
@@ -238,6 +219,7 @@ void gamePlayScene::handleMouseClick() {
             log_info("button clicked");
 
             button1->setClickedBool(true);
+            buttonClickSound->returnSound().play();
             FlagSystem::gameSceneNextFlags.sceneStart = true;
             FlagSystem::gameSceneNextFlags.sceneEnd = false;
 
@@ -256,9 +238,8 @@ void gamePlayScene::handleSpaceKey() {
 
 void gamePlayScene::handleMovementKeys() {
     if(!player->getMoveState()) return; 
-        // move player sprite
-    sf::FloatRect background1Bounds = background->getViewBounds(background->returnSpritesShape());
 
+    sf::FloatRect background1Bounds = background->getViewBounds(background->returnSpritesShape());
     // Left movement
     if (FlagSystem::flagEvents.aPressed ) physics::spriteMover(player, physics::moveLeft);
     // Right movement
@@ -280,8 +261,6 @@ void gamePlayScene::handleMovementKeys() {
 
 // Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision 
 void gamePlayScene::handleGameEvents() { 
-  //  if (player) physics::spriteMover(player, physics::moveRight); 
-
     auto setVisibility = [&](auto& assetList) {
         for (auto& asset : assetList) {
             if (asset && asset->getSpritePos().x + 300 < MetaComponents::getViewMinX() - Constants::PASSTHROUGH_OFFSET) {
@@ -307,6 +286,11 @@ void gamePlayScene::handleGameEvents() {
                 bool isTouchingThisCloud = physics::collisionHelper(player, cloud, physics::pixelPerfectCollision, quadtree);
                 if (isTouchingThisCloud) {
                     touchingCloud = true;
+
+                    if(MetaComponents::spacePressedElapsedTime == MetaComponents::deltaTime){
+                        if(playerJumpSound) playerJumpSound->returnSound().play();
+                    }
+
                     break; // Stop checking further once touching a cloud
                 }
             }
@@ -317,13 +301,9 @@ void gamePlayScene::handleGameEvents() {
     checkCloudCollisions(cloudBlue);
     checkCloudCollisions(cloudPurple);
 
-    if(MetaComponents::spacePressedElapsedTime == MetaComponents::deltaTime){
-        if(player && playerJumpSound) playerJumpSound->returnSound().play();
-    }
-
     //Update falling state based on whether the player is touching any cloud
     FlagSystem::gameScene1Flags.playerFalling = !touchingCloud;
-    FlagSystem::gameScene1Flags.playerJumping = MetaComponents::spacePressedElapsedTime > 0.0f; 
+    FlagSystem::gameScene1Flags.playerJumping = MetaComponents::spacePressedElapsedTime > 0.0f;
     FlagSystem::gameScene1Flags.sceneEnd = !player->getMoveState();
 } 
 
@@ -364,9 +344,7 @@ void gamePlayScene::updateEntityStates(){ // manually change the sprite's state
     player->setFallingState(FlagSystem::gameScene1Flags.playerFalling); 
 }
 
-void gamePlayScene::changeAnimation(){ // change animation for sprites. change animation for texts if necessary 
-    std::cout <<button1->getVisibleState() << std::endl;
-    if (button1 && button1->getVisibleState()) button1->changeAnimation(); 
+void gamePlayScene::changeAnimation(){ // change animation for sprites. change animation for texts if necessary     if (button1 && button1->getVisibleState()) button1->changeAnimation(); 
     if (background) background->updateBackground(Constants::BACKGROUND_SPEED, Constants::BACKGROUND_MOVING_DIRECTION);
     if (player && player->getVisibleState()) player->changeAnimation();
 }
@@ -399,7 +377,7 @@ void gamePlayScene::updatePlayerAndView() {
 
 void gamePlayScene::updateDrawablesVisibility(){
     try{
-       // if (button1 && button1->getVisibleState()) button1->setVisibleState(physics::collisionHelper(button1, MetaComponents::view)); // reset button's visibility if it is on or off screen 
+        if (button1 && button1->getVisibleState()) button1->setVisibleState(physics::collisionHelper(button1, MetaComponents::view)); // reset button's visibility if it is on or off screen 
     }
     catch(const std::exception & e){
         log_error("Exception in updateDrawablesVisibility: " + std::string(e.what()));
@@ -418,6 +396,8 @@ void gamePlayScene::draw() {
         drawAnythingVisible(background);
         drawAnythingVisible(tileMap1);
         drawAnythingVisible(introText);
+        drawAnythingVisible(scoreText);
+        drawAnythingVisible(endingText);
         drawAnythingVisible(button1);
         for (auto& cloud : cloudBlue) drawAnythingVisible(cloud);
         for (auto& cloud : cloudPurple) drawAnythingVisible(cloud);

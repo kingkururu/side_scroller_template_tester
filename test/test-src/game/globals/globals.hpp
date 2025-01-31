@@ -179,6 +179,16 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     inline sf::Color TEXT_COLOR;
     inline std::shared_ptr<sf::Font> TEXT_FONT = std::make_shared<sf::Font>(); 
 
+    inline unsigned short SCORETEXT_SIZE;
+    inline std::string SCORETEXT_MESSAGE;
+    inline sf::Vector2f SCORETEXT_POSITION;
+    inline sf::Color SCORETEXT_COLOR;
+
+    inline unsigned short ENDINGTEXT_SIZE;
+    inline std::string ENDINGTEXT_MESSAGE;
+    inline sf::Vector2f ENDINGTEXT_POSITION;
+    inline sf::Color ENDINGTEXT_COLOR;
+
     // Music settings
     inline std::filesystem::path BACKGROUNDMUSIC_PATH;
     inline float BACKGROUNDMUSIC_VOLUME;
@@ -194,6 +204,10 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     inline std::filesystem::path COINHITSOUND_PATH;
     inline float COINHITSOUND_VOLUME;
     inline std::shared_ptr<sf::SoundBuffer> COINHIT_SOUNDBUFF = std::make_shared<sf::SoundBuffer>();
+
+    inline std::filesystem::path BUTTONCLICKSOUND_PATH;
+    inline float BUTTONCLICKSOUND_VOLUME;
+    inline std::shared_ptr<sf::SoundBuffer> BUTTONCLICK_SOUNDBUFF = std::make_shared<sf::SoundBuffer>();
 }
 
 // New namespace for flag events

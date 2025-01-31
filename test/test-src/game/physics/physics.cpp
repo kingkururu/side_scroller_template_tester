@@ -97,7 +97,7 @@ namespace physics {
     void Quadtree::update() {
         try {
             for (auto& sprite : objects) {
-                // log_info("Updating quadtree at level " + std::to_string(level));
+              //  log_info("Updating quadtree at level " + std::to_string(level));
 
                 if (sprite->getMoveState()) {
                     // Check which node the sprite was in
@@ -124,10 +124,6 @@ namespace physics {
     // struct to hold raycast operation results that use vector of sprites
     RaycastResult cachedRaycastResult {}; 
 
-    // // falling objects 
-    // sf::Vector2f freeFall( float speed, sf::Vector2f originalPos){
-    //     return { originalPos.x, originalPos.y += speed * MetaComponents::deltaTime * gravity };
-    // }
     // falling objects 
     sf::Vector2f freeFall( float speed, sf::Vector2f originalPos){
         return { originalPos.x, originalPos.y += speed * MetaComponents::deltaTime };
@@ -318,7 +314,7 @@ namespace physics {
 
         // Check AABB collision first
         if (left >= right || top >= bottom) return false; 
-
+        //std::cout << "AABB collision passed." << std::endl;
         // Check each pixel in the overlapping area
         for (int y = static_cast<int>(top); y < static_cast<int>(bottom); ++y) {
             for (int x = static_cast<int>(left); x < static_cast<int>(right); ++x) {
@@ -338,6 +334,7 @@ namespace physics {
                 }
             }
         }
+        //std::cout << "Pixel perfect collision passed." << std::endl;
         return false; 
     }
 }
