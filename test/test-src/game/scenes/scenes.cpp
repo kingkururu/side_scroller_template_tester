@@ -243,9 +243,6 @@ void gamePlayScene::handleMouseClick() {
 
             window.clear();
         }
-        if (FlagSystem::gameScene1Flags.playerFalling){
-            player->changePosition(Constants::SPRITE1_POSITION); 
-        }
     }
 }
 
@@ -339,6 +336,7 @@ void gamePlayScene::handleSceneFlags(){
         button1->setVisibleState(true);
         
         button1->setPosition({player->getSpritePos().x, player->getSpritePos().y - 400});  
+        button1->updatePos();
         std::cout << button1->getSpritePos().x << " " << button1->getSpritePos().y << std::endl; 
     }
 }
@@ -367,6 +365,7 @@ void gamePlayScene::updateEntityStates(){ // manually change the sprite's state
 }
 
 void gamePlayScene::changeAnimation(){ // change animation for sprites. change animation for texts if necessary 
+    std::cout <<button1->getVisibleState() << std::endl;
     if (button1 && button1->getVisibleState()) button1->changeAnimation(); 
     if (background) background->updateBackground(Constants::BACKGROUND_SPEED, Constants::BACKGROUND_MOVING_DIRECTION);
     if (player && player->getVisibleState()) player->changeAnimation();
@@ -400,7 +399,7 @@ void gamePlayScene::updatePlayerAndView() {
 
 void gamePlayScene::updateDrawablesVisibility(){
     try{
-        if (button1 && button1->getVisibleState()) button1->setVisibleState(physics::collisionHelper(button1, MetaComponents::view)); // reset button's visibility if it is on or off screen 
+       // if (button1 && button1->getVisibleState()) button1->setVisibleState(physics::collisionHelper(button1, MetaComponents::view)); // reset button's visibility if it is on or off screen 
     }
     catch(const std::exception & e){
         log_error("Exception in updateDrawablesVisibility: " + std::string(e.what()));

@@ -1,215 +1,92 @@
-[2025-01-31 18:32:10.490] [info_logger] [info] Succesfuly read yaml file
-[2025-01-31 18:32:10.564] [info_logger] [info] 	Constants initialized 
-[2025-01-31 18:32:10.609] [info_logger] [info] scene made
-[2025-01-31 18:32:10.609] [info_logger] [info] scene made
-[2025-01-31 18:32:10.609] [info_logger] [info] scene made
-[2025-01-31 18:32:10.609] [info_logger] [info] 	Game initialized
-[2025-01-31 18:32:10.609] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:32:10.609] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:32:10.609] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:32:10.609] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:32:10.609] [info_logger] [info] Background created
-[2025-01-31 18:32:10.609] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:32:10.609] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:32:10.609] [info_logger] [info] Tile map initialized successfully
-[2025-01-31 18:32:10.609] [info_logger] [info] Music initialized successfully, volume is 80.000000
-[2025-01-31 18:32:10.609] [info_logger] [info] Sound initialized successfully
-[2025-01-31 18:32:10.609] [info_logger] [info] Sound initialized successfully
-[2025-01-31 18:32:10.609] [info_logger] [info] text initialized successully
-[2025-01-31 18:32:10.609] [info_logger] [info] Sprite inserted into quadtree node.
-[2025-01-31 18:32:10.609] [info_logger] [info] Sprite inserted into quadtree node.
-[2025-01-31 18:32:10.609] [info_logger] [info] Sprite inserted into quadtree node.
-[2025-01-31 18:32:10.609] [info_logger] [info] Sprite inserted into quadtree node.
-[2025-01-31 18:32:10.609] [info_logger] [info] Sprite inserted into quadtree node.
-[2025-01-31 18:32:10.609] [info_logger] [info] initializing assets in scene 1: 0.479000ms
-[2025-01-31 18:32:10.609] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:32:10.609] [info_logger] [info] Background created
-[2025-01-31 18:32:11.510] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.017688, 550.000000, 376.686462
-[2025-01-31 18:32:11.511] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.124923, 550.000000, 362.232513
-[2025-01-31 18:32:11.529] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.142603, 550.000000, 360.002625
-[2025-01-31 18:32:11.546] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.160281, 550.000000, 357.926117
-[2025-01-31 18:32:11.564] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.177962, 550.000000, 356.002441
-[2025-01-31 18:32:11.582] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.195641, 550.000000, 354.232147
-[2025-01-31 18:32:11.599] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.213323, 550.000000, 352.614746
-[2025-01-31 18:32:11.617] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.231001, 550.000000, 351.150848
-[2025-01-31 18:32:11.635] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.248680, 550.000000, 349.839996
-[2025-01-31 18:32:11.652] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.266352, 550.000000, 348.682709
-[2025-01-31 18:32:11.670] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.284031, 550.000000, 347.678101
-[2025-01-31 18:32:11.688] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.301711, 550.000000, 346.826599
-[2025-01-31 18:32:11.705] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.319386, 550.000000, 346.128418
-[2025-01-31 18:32:11.723] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.337062, 550.000000, 345.583282
-[2025-01-31 18:32:11.741] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.354740, 550.000000, 345.191223
-[2025-01-31 18:32:11.758] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.372420, 550.000000, 344.952301
-[2025-01-31 18:32:11.776] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.390099, 550.000000, 344.866547
-[2025-01-31 18:32:11.794] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.407778, 550.000000, 344.933929
-[2025-01-31 18:32:11.811] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.425461, 550.000000, 345.154541
-[2025-01-31 18:32:11.829] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.443130, 550.000000, 345.527954
-[2025-01-31 18:32:11.847] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.460808, 550.000000, 346.054688
-[2025-01-31 18:32:11.864] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.478487, 550.000000, 346.734589
-[2025-01-31 18:32:11.882] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.496182, 550.000000, 347.568542
-[2025-01-31 18:32:11.900] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.513870, 550.000000, 348.555481
-[2025-01-31 18:32:11.918] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.531571, 550.000000, 349.696655
-[2025-01-31 18:32:11.935] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.549262, 550.000000, 350.990540
-[2025-01-31 18:32:11.953] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.566952, 550.000000, 352.437683
-[2025-01-31 18:32:11.970] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.583978, 550.000000, 353.972565
-[2025-01-31 18:32:11.988] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.601666, 550.000000, 355.720428
-[2025-01-31 18:32:12.006] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.619424, 550.000000, 357.629730
-[2025-01-31 18:32:12.023] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.636877, 550.000000, 359.655487
-[2025-01-31 18:32:12.041] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.654584, 550.000000, 361.864380
-[2025-01-31 18:32:12.059] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.672286, 550.000000, 364.226196
-[2025-01-31 18:32:12.077] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.689985, 550.000000, 366.741089
-[2025-01-31 18:32:12.094] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.707676, 550.000000, 369.408203
-[2025-01-31 18:32:12.111] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.725121, 550.000000, 372.187347
-[2025-01-31 18:32:12.128] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.742129, 550.000000, 375.038635
-[2025-01-31 18:32:12.146] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.759866, 550.000000, 378.166290
-[2025-01-31 18:32:12.164] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.777564, 550.000000, 381.440521
-[2025-01-31 18:32:12.181] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.794656, 550.000000, 384.745789
-[2025-01-31 18:32:12.198] [info_logger] [info] Jump done, 550.000000, 385.000000
-[2025-01-31 18:32:13.493] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:32:14.501] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:32:15.873] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.017690, 592.190979, 313.264343
-[2025-01-31 18:32:15.888] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.035400, 592.190979, 310.100372
-[2025-01-31 18:32:15.906] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.052902, 592.190979, 307.123657
-[2025-01-31 18:32:15.923] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.070592, 592.190979, 304.268311
-[2025-01-31 18:32:15.941] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.088285, 592.190979, 301.565887
-[2025-01-31 18:32:15.959] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.105977, 592.190979, 299.016968
-[2025-01-31 18:32:15.977] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.123665, 592.190979, 296.621948
-[2025-01-31 18:32:15.994] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.141353, 592.190979, 294.380219
-[2025-01-31 18:32:16.012] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.159062, 592.190979, 292.289490
-[2025-01-31 18:32:16.029] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.176771, 592.190979, 290.352448
-[2025-01-31 18:32:16.065] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.212151, 592.190979, 290.495056
-[2025-01-31 18:32:16.100] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.247581, 592.190979, 290.939240
-[2025-01-31 18:32:16.118] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.265269, 592.190979, 289.771515
-[2025-01-31 18:32:16.136] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.282956, 592.190979, 288.757141
-[2025-01-31 18:32:16.153] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.300655, 592.190979, 287.895569
-[2025-01-31 18:32:16.171] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.318351, 592.190979, 287.187592
-[2025-01-31 18:32:16.189] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.336041, 592.190979, 286.633179
-[2025-01-31 18:32:16.206] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.353726, 592.190979, 286.232178
-[2025-01-31 18:32:16.223] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.370491, 592.190979, 285.989777
-[2025-01-31 18:32:16.241] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.388183, 592.190979, 285.887329
-[2025-01-31 18:32:16.259] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.405869, 592.190979, 285.938202
-[2025-01-31 18:32:16.276] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.423558, 592.190979, 286.142395
-[2025-01-31 18:32:16.293] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.440447, 592.190979, 286.477112
-[2025-01-31 18:32:16.346] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.493499, 592.190979, 290.744690
-[2025-01-31 18:32:16.364] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.511189, 592.190979, 291.708496
-[2025-01-31 18:32:16.399] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.546560, 592.190979, 294.747406
-[2025-01-31 18:32:16.417] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.564252, 592.190979, 296.171326
-[2025-01-31 18:32:16.435] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.581943, 592.190979, 297.748505
-[2025-01-31 18:32:16.452] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.599629, 592.190979, 299.478516
-[2025-01-31 18:32:16.470] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.617321, 592.190979, 301.362488
-[2025-01-31 18:32:16.488] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.635011, 592.190979, 303.399597
-[2025-01-31 18:32:16.505] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.652715, 592.190979, 305.591888
-[2025-01-31 18:32:16.506] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:32:16.523] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.670402, 592.190979, 307.935364
-[2025-01-31 18:32:16.541] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.688095, 592.190979, 310.433014
-[2025-01-31 18:32:16.559] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.705798, 592.190979, 313.085663
-[2025-01-31 18:32:16.575] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.722491, 592.190979, 315.723511
-[2025-01-31 18:32:16.593] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.740181, 592.190979, 318.672241
-[2025-01-31 18:32:16.611] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.757870, 592.190979, 321.774109
-[2025-01-31 18:32:16.628] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.775559, 592.190979, 325.029297
-[2025-01-31 18:32:16.646] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.793292, 592.190979, 328.446686
-[2025-01-31 18:32:16.664] [info_logger] [info] Jump done, 592.190979, 328.000000
-[2025-01-31 18:32:17.226] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.017688, 668.899353, 324.686462
-[2025-01-31 18:32:17.241] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.035386, 668.899353, 321.524536
-[2025-01-31 18:32:17.259] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.053086, 668.899353, 318.515747
-[2025-01-31 18:32:17.276] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.070405, 668.899353, 315.718689
-[2025-01-31 18:32:17.294] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.088093, 668.899353, 313.015350
-[2025-01-31 18:32:17.311] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.105178, 668.899353, 310.547211
-[2025-01-31 18:32:17.329] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.122867, 668.899353, 308.145142
-[2025-01-31 18:32:17.347] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.140558, 668.899353, 305.896149
-[2025-01-31 18:32:17.364] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.157915, 668.899353, 303.837219
-[2025-01-31 18:32:17.382] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.175603, 668.899353, 301.892334
-[2025-01-31 18:32:17.399] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.193296, 668.899353, 300.100311
-[2025-01-31 18:32:17.417] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.210984, 668.899353, 298.462097
-[2025-01-31 18:32:17.435] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.228673, 668.899353, 296.977112
-[2025-01-31 18:32:17.452] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.246368, 668.899353, 295.645050
-[2025-01-31 18:32:17.470] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.264058, 668.899353, 294.466705
-[2025-01-31 18:32:17.488] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.281754, 668.899353, 293.441376
-[2025-01-31 18:32:17.505] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.299441, 668.899353, 292.569855
-[2025-01-31 18:32:17.523] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.316780, 668.899353, 291.862793
-[2025-01-31 18:32:17.539] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.333485, 668.899353, 291.318329
-[2025-01-31 18:32:17.557] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.351182, 668.899353, 290.894989
-[2025-01-31 18:32:17.575] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.368731, 668.899353, 290.626099
-[2025-01-31 18:32:17.592] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.386417, 668.899353, 290.508392
-[2025-01-31 18:32:17.610] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.404110, 668.899353, 290.544037
-[2025-01-31 18:32:17.628] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.421808, 668.899353, 290.733154
-[2025-01-31 18:32:17.644] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.438504, 668.899353, 291.048157
-[2025-01-31 18:32:17.662] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.456190, 668.899353, 291.535095
-[2025-01-31 18:32:17.680] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.473915, 668.899353, 292.177063
-[2025-01-31 18:32:17.697] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.491248, 668.899353, 292.952057
-[2025-01-31 18:32:17.715] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.508670, 668.899353, 293.879761
-[2025-01-31 18:32:17.732] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.526355, 668.899353, 294.974701
-[2025-01-31 18:32:17.750] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.544048, 668.899353, 296.223541
-[2025-01-31 18:32:17.768] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.561776, 668.899353, 297.628845
-[2025-01-31 18:32:17.785] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.579470, 668.899353, 299.184875
-[2025-01-31 18:32:17.803] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.597167, 668.899353, 300.894623
-[2025-01-31 18:32:17.821] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.614850, 668.899353, 302.756226
-[2025-01-31 18:32:17.838] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.632533, 668.899353, 304.771057
-[2025-01-31 18:32:17.856] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.650230, 668.899353, 306.940948
-[2025-01-31 18:32:17.874] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.667932, 668.899353, 309.264984
-[2025-01-31 18:32:17.892] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.685616, 668.899353, 311.739899
-[2025-01-31 18:32:17.909] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.702515, 668.899353, 314.244873
-[2025-01-31 18:32:17.926] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.720201, 668.899353, 317.019775
-[2025-01-31 18:32:17.943] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.737463, 668.899353, 319.874176
-[2025-01-31 18:32:17.961] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.755147, 668.899353, 322.951569
-[2025-01-31 18:32:17.979] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.772880, 668.899353, 326.191589
-[2025-01-31 18:32:17.996] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.790568, 668.899353, 329.576691
-[2025-01-31 18:32:18.014] [info_logger] [info] Jump done, 668.899353, 330.000000
-[2025-01-31 18:32:18.293] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.017684, 668.899353, 326.687164
-[2025-01-31 18:32:18.296] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.034598, 668.899353, 323.658752
-[2025-01-31 18:32:18.314] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.052290, 668.899353, 320.644440
-[2025-01-31 18:32:18.332] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.069981, 668.899353, 317.783630
-[2025-01-31 18:32:18.350] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.087674, 668.899353, 315.075897
-[2025-01-31 18:32:18.367] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.105370, 668.899353, 312.521149
-[2025-01-31 18:32:18.385] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.122831, 668.899353, 310.149719
-[2025-01-31 18:32:18.402] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.140528, 668.899353, 307.899689
-[2025-01-31 18:32:18.420] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.158269, 668.899353, 305.798309
-[2025-01-31 18:32:18.438] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.175959, 668.899353, 303.856293
-[2025-01-31 18:32:18.455] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.193645, 668.899353, 302.067993
-[2025-01-31 18:32:18.473] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.211330, 668.899353, 300.433044
-[2025-01-31 18:32:18.491] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.229029, 668.899353, 298.950287
-[2025-01-31 18:32:18.491] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:32:18.509] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.246724, 668.899353, 297.621307
-[2025-01-31 18:32:18.509] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:32:18.526] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.264368, 668.899353, 296.448700
-[2025-01-31 18:32:18.544] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.281853, 668.899353, 295.436462
-[2025-01-31 18:32:18.561] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.299547, 668.899353, 294.565521
-[2025-01-31 18:32:18.579] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.317257, 668.899353, 293.847473
-[2025-01-31 18:32:18.597] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.334953, 668.899353, 293.283447
-[2025-01-31 18:32:18.615] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.352649, 668.899353, 292.872864
-[2025-01-31 18:32:18.632] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.370349, 668.899353, 292.615692
-[2025-01-31 18:32:18.650] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.388042, 668.899353, 292.512024
-[2025-01-31 18:32:18.668] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.405742, 668.899353, 292.561829
-[2025-01-31 18:32:18.685] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.423427, 668.899353, 292.764832
-[2025-01-31 18:32:18.703] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.441110, 668.899353, 293.121033
-[2025-01-31 18:32:18.721] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.458800, 668.899353, 293.630707
-[2025-01-31 18:32:18.739] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.476485, 668.899353, 294.293488
-[2025-01-31 18:32:18.757] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.494171, 668.899353, 295.109589
-[2025-01-31 18:32:18.773] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.510905, 668.899353, 296.018982
-[2025-01-31 18:32:18.791] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.528599, 668.899353, 297.133942
-[2025-01-31 18:32:18.809] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.546285, 668.899353, 298.401672
-[2025-01-31 18:32:18.826] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.563980, 668.899353, 299.823456
-[2025-01-31 18:32:18.844] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.581671, 668.899353, 301.398285
-[2025-01-31 18:32:18.862] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.599357, 668.899353, 303.125946
-[2025-01-31 18:32:18.879] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.617044, 668.899353, 305.006989
-[2025-01-31 18:32:18.897] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.634726, 668.899353, 307.040710
-[2025-01-31 18:32:18.915] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.652416, 668.899353, 309.228668
-[2025-01-31 18:32:18.933] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.670102, 668.899353, 311.569397
-[2025-01-31 18:32:18.950] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.687788, 668.899353, 314.063416
-[2025-01-31 18:32:18.968] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.705474, 668.899353, 316.710693
-[2025-01-31 18:32:18.985] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.723161, 668.899353, 319.511414
-[2025-01-31 18:32:19.003] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.740851, 668.899353, 322.465942
-[2025-01-31 18:32:19.021] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.758561, 668.899353, 325.577515
-[2025-01-31 18:32:19.041] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.776294, 668.899353, 328.847198
-[2025-01-31 18:32:19.061] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.794011, 668.899353, 332.267731
-[2025-01-31 18:32:19.075] [info_logger] [info] Jump done, 668.899353, 332.000000
-[2025-01-31 18:32:19.512] [info_logger] [info] Sprite initialized successfully
-[2025-01-31 18:32:20.016] [info_logger] [info] Window close event detected.
-[2025-01-31 18:32:20.035] [info_logger] [info] 	Game Ended
+[2025-01-31 18:49:18.537] [info_logger] [info] Succesfuly read yaml file
+[2025-01-31 18:49:18.611] [info_logger] [info] 	Constants initialized 
+[2025-01-31 18:49:18.648] [info_logger] [info] scene made
+[2025-01-31 18:49:18.648] [info_logger] [info] scene made
+[2025-01-31 18:49:18.648] [info_logger] [info] scene made
+[2025-01-31 18:49:18.648] [info_logger] [info] 	Game initialized
+[2025-01-31 18:49:18.648] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 18:49:18.648] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 18:49:18.648] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 18:49:18.648] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 18:49:18.648] [info_logger] [info] Background created
+[2025-01-31 18:49:18.648] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 18:49:18.648] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 18:49:18.649] [info_logger] [info] Tile map initialized successfully
+[2025-01-31 18:49:18.649] [info_logger] [info] Music initialized successfully, volume is 80.000000
+[2025-01-31 18:49:18.649] [info_logger] [info] Sound initialized successfully
+[2025-01-31 18:49:18.649] [info_logger] [info] Sound initialized successfully
+[2025-01-31 18:49:18.649] [info_logger] [info] text initialized successully
+[2025-01-31 18:49:18.649] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-31 18:49:18.649] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-31 18:49:18.649] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-31 18:49:18.649] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-31 18:49:18.649] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-31 18:49:18.649] [info_logger] [info] initializing assets in scene 1: 0.491000ms
+[2025-01-31 18:49:18.649] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 18:49:18.649] [info_logger] [info] Background created
+[2025-01-31 18:49:21.536] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 18:49:22.538] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 18:49:23.771] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:23.790] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:23.806] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:23.826] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:23.841] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:23.861] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:23.877] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:23.893] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:23.911] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:23.929] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:23.947] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:23.965] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:23.982] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.000] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.018] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.035] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.053] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.071] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.089] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.106] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.124] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.142] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.160] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.177] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.195] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.212] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.230] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.248] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.266] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.283] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.300] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.318] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.335] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.353] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.370] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.388] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.406] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.423] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.441] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.459] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.476] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.493] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.511] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.529] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.546] [info_logger] [info] Sprite initialized successfully
+[2025-01-31 18:49:24.547] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.564] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.582] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.599] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.617] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.635] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.652] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.670] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:24.689] [info_logger] [info] button clicked
+[2025-01-31 18:49:24.689] [info_logger] [info] Music volume set to 20.000000
+[2025-01-31 18:49:27.887] [info_logger] [info] Window close event detected.
+[2025-01-31 18:49:27.926] [info_logger] [info] 	Game Ended
 
-[2025-01-31 18:32:20.035] [info_logger] [info] objects cleared.
-[2025-01-31 18:32:20.035] [info_logger] [info] Quadtree cleared.
-[2025-01-31 18:32:20.039] [info_logger] [info] objects cleared.
-[2025-01-31 18:32:20.039] [info_logger] [info] Quadtree cleared.
-[2025-01-31 18:32:20.039] [info_logger] [info] objects cleared.
-[2025-01-31 18:32:20.039] [info_logger] [info] Quadtree cleared.
+[2025-01-31 18:49:27.926] [info_logger] [info] objects cleared.
+[2025-01-31 18:49:27.926] [info_logger] [info] Quadtree cleared.
+[2025-01-31 18:49:27.932] [info_logger] [info] objects cleared.
+[2025-01-31 18:49:27.932] [info_logger] [info] Quadtree cleared.
+[2025-01-31 18:49:27.932] [info_logger] [info] objects cleared.
+[2025-01-31 18:49:27.932] [info_logger] [info] Quadtree cleared.

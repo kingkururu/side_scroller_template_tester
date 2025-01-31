@@ -32,9 +32,9 @@ void GameManager::runGame() {
 
 void GameManager::runScenesFlags(){
     if(!FlagSystem::flagEvents.gameEnd){
-        if(FlagSystem::gameScene1Flags.sceneStart && !FlagSystem::gameScene1Flags.sceneEnd) gameScene->runScene();
+        if(FlagSystem::gameScene1Flags.sceneStart && !FlagSystem::gameSceneNextFlags.sceneStart) gameScene->runScene();
 
-        if(FlagSystem::gameSceneNextFlags.sceneStart  && !FlagSystem::gameSceneNextFlags.sceneEnd) gameSceneNext->runScene();
+        if(FlagSystem::gameSceneNextFlags.sceneStart && !FlagSystem::gameSceneNextFlags.sceneEnd) gameSceneNext->runScene();
     }
 }
 
