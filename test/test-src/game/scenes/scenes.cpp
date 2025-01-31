@@ -214,7 +214,7 @@ void gamePlayScene::handleInvisibleSprites() {
 elapsed times from when bullets were spawned and when space button was pressed */
 void gamePlayScene::setTime(){
     // count respawn time here 
-    if (FlagSystem::flagEvents.spacePressed){
+    if (FlagSystem::flagEvents.spacePressed || MetaComponents::spacePressedElapsedTime) {
         MetaComponents::spacePressedElapsedTime += MetaComponents::deltaTime; 
     } else {
         MetaComponents::spacePressedElapsedTime = 0.0f; 
@@ -250,7 +250,7 @@ void gamePlayScene::handleMouseClick() {
 }
 
 void gamePlayScene::handleSpaceKey() {
-    if (FlagSystem::flagEvents.spacePressed) {
+    if (MetaComponents::spacePressedElapsedTime) {
         if (player->getMoveState() && !FlagSystem::gameScene1Flags.playerFalling) {
             physics::spriteMover(player, physics::jump, MetaComponents::spacePressedElapsedTime, Constants::SPRITE1_JUMP_ACCELERATION);
         } 
@@ -306,7 +306,7 @@ void gamePlayScene::handleGameEvents() {
     bool touchingCloud = false;
     auto checkCloudCollisions = [&](const std::vector<std::unique_ptr<Cloud>>& clouds) {
         for (const auto& cloud : clouds) {
-            if (player && !FlagSystem::gameScene1Flags.playerJumping) {
+            if (player && cloud) {
                 bool isTouchingThisCloud = physics::collisionHelper(player, cloud, physics::pixelPerfectCollision, quadtree);
                 if (isTouchingThisCloud) {
                     touchingCloud = true;
@@ -373,6 +373,7 @@ void gamePlayScene::changeAnimation(){ // change animation for sprites. change a
 }
 
 void gamePlayScene::updatePlayerAndView() {
+    if(FlagSystem::gameScene1Flags.playerJumping) return;
     // Get the player's position
     sf::Vector2f playerPos = player->getSpritePos();
 

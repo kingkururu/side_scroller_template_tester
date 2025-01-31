@@ -154,7 +154,7 @@ namespace physics {
     }
 
     sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos, sf::Vector2f acceleration){
-        float jumpDuration = 2.0f; 
+        float jumpDuration = 0.8f; 
         if (elapsedTime <= jumpDuration) {   // If elapsedTime is within jump duration
             if (elapsedTime <= jumpDuration / 2) {
                 originalPos.y -= speed * MetaComponents::deltaTime * (1.0f - elapsedTime / (jumpDuration / 2.0)) * acceleration.y * gravity;
@@ -165,6 +165,7 @@ namespace physics {
        //     originalPos.x += speed * MetaComponents::deltaTime;
             log_info("Jump in progress. Elapsed time: {}, Position: ({}, {})" + std::to_string(elapsedTime) + ", "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
         } else {
+            
             elapsedTime = 0.0f;
             originalPos.y = std::round(originalPos.y); // Correct minor float inaccuracies
 
