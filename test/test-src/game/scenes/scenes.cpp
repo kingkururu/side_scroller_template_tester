@@ -112,11 +112,12 @@ void gamePlayScene::createAssets() {
         }
         tileMap1 = std::make_unique<TileMap>(tiles1.data(), Constants::TILES_NUMBER, Constants::TILEMAP_WIDTH, Constants::TILEMAP_HEIGHT, Constants::TILE_WIDTH, Constants::TILE_HEIGHT, Constants::TILEMAP_FILEPATH, Constants::TILEMAP_POSITION); 
 
-        // Music and sound effects
+        // Music
         backgroundMusic = std::make_unique<MusicClass>(std::move(Constants::BACKGROUNDMUSIC_MUSIC), Constants::BACKGROUNDMUSIC_VOLUME);
         if(backgroundMusic) backgroundMusic->returnMusic().play(); 
         if(backgroundMusic) backgroundMusic->returnMusic().setLoop(Constants::BACKGROUNDMUSIC_LOOP);
 
+        // Sound
         playerJumpSound = std::make_unique<SoundClass>(Constants::PLAYERJUMP_SOUNDBUFF, Constants::PLAYERJUMPSOUND_VOLUME); 
         coinHitSound = std::make_unique<SoundClass>(Constants::COINHIT_SOUNDBUFF, Constants::COINHITSOUND_VOLUME); 
         buttonClickSound = std::make_unique<SoundClass>(Constants::BUTTONCLICK_SOUNDBUFF, Constants::BUTTONCLICKSOUND_VOLUME);
@@ -191,8 +192,6 @@ void gamePlayScene::handleInvisibleSprites() {
     resetPosition(coins, Constants::makeRandomPositionCoin);
 }
 
-/* Updating time from GameManager's deltatime; it updates sprite respawn times and also counts 
-elapsed times from when bullets were spawned and when space button was pressed */
 void gamePlayScene::setTime(){
     // count respawn time here 
     if (FlagSystem::flagEvents.spacePressed || MetaComponents::spacePressedElapsedTime) {
@@ -261,21 +260,14 @@ void gamePlayScene::handleMovementKeys() {
 
 // Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision 
 void gamePlayScene::handleGameEvents() { 
-    auto setVisibility = [&](auto& assetList) {
-        for (auto& asset : assetList) {
-            if (asset && asset->getSpritePos().x + 300 < MetaComponents::getViewMinX() - Constants::PASSTHROUGH_OFFSET) {
-                asset->setVisibleState(false);
-            }
-        }
-    };
-    setVisibility(cloudBlue);
-    setVisibility(cloudPurple);
-    setVisibility(coins);
-  
+    scoreText->getText().setPosition(MetaComponents::view.getCenter().x - 460, MetaComponents::view.getCenter().y - 270);
+    scoreText->getText().setString("Score: " + std::to_string(score));
+
     for(auto it = coins.begin(); it != coins.end(); ++it){
         if(physics::collisionHelper(player, *it, physics::pixelPerfectCollision, quadtree)){
             (*it)->setVisibleState(false);
             coinHitSound->returnSound().play();
+            score += 50;
         }
     }
 
@@ -378,6 +370,18 @@ void gamePlayScene::updatePlayerAndView() {
 void gamePlayScene::updateDrawablesVisibility(){
     try{
         if (button1 && button1->getVisibleState()) button1->setVisibleState(physics::collisionHelper(button1, MetaComponents::view)); // reset button's visibility if it is on or off screen 
+
+        auto setVisibility = [&](auto& assetList) {
+            for (auto& asset : assetList) {
+                if (asset && asset->getSpritePos().x + 300 < MetaComponents::getViewMinX() - Constants::PASSTHROUGH_OFFSET) {
+                    asset->setVisibleState(false);
+                }
+            }
+        };
+        setVisibility(cloudBlue);
+        setVisibility(cloudPurple);
+        setVisibility(coins);
+
     }
     catch(const std::exception & e){
         log_error("Exception in updateDrawablesVisibility: " + std::string(e.what()));
