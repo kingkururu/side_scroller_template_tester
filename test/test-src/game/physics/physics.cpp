@@ -154,24 +154,21 @@ namespace physics {
     }
 
     sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos, sf::Vector2f acceleration){
-        float jumpDuration = 0.8f; 
-
+        float jumpDuration = 2.0f; 
         if (elapsedTime <= jumpDuration) {   // If elapsedTime is within jump duration
-            if (elapsedTime <= 0.4f) {
+            if (elapsedTime <= jumpDuration / 2) {
                 originalPos.y -= speed * MetaComponents::deltaTime * (1.0f - elapsedTime / (jumpDuration / 2.0)) * acceleration.y * gravity;
             }
             else {
                 originalPos.y += speed * MetaComponents::deltaTime * (elapsedTime - jumpDuration / 2.0) / ( jumpDuration / 2.0)* acceleration.y * gravity;
             }
-           // originalPos.x += speed * MetaComponents::deltaTime * acceleration.x, originalPos.y;  
-            //log_info("Jump in progress. Elapsed time: {}, Position: ({}, {})" + std::to_string(elapsedTime) + ", "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
+       //     originalPos.x += speed * MetaComponents::deltaTime;
+            log_info("Jump in progress. Elapsed time: {}, Position: ({}, {})" + std::to_string(elapsedTime) + ", "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
         } else {
-            // Reset jump state
-            FlagSystem::flagEvents.spacePressed = false;
             elapsedTime = 0.0f;
             originalPos.y = std::round(originalPos.y); // Correct minor float inaccuracies
 
-            //log_info("Jump done, "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
+            log_info("Jump done, "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
         }
         return originalPos;
     }
@@ -193,8 +190,6 @@ namespace physics {
             }
             // log_info("Jump in progress. Elapsed time: {}, Position: ({}, {})" + std::to_string(elapsedTime) + ", "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
         } else {
-            // Reset jump state
-            FlagSystem::flagEvents.spacePressed = false;
             elapsedTime = 0.0f;
             originalPos.y = startPos.y; // Reset to the initial position
             // log_info("Jump done, "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));

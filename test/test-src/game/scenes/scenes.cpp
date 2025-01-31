@@ -254,7 +254,6 @@ void gamePlayScene::handleSpaceKey() {
         if (player->getMoveState() && !FlagSystem::gameScene1Flags.playerFalling) {
             physics::spriteMover(player, physics::jump, MetaComponents::spacePressedElapsedTime, Constants::SPRITE1_JUMP_ACCELERATION);
         } 
-        
     }
 }
 
@@ -307,7 +306,7 @@ void gamePlayScene::handleGameEvents() {
     bool touchingCloud = false;
     auto checkCloudCollisions = [&](const std::vector<std::unique_ptr<Cloud>>& clouds) {
         for (const auto& cloud : clouds) {
-            if (player) {
+            if (player && !FlagSystem::gameScene1Flags.playerJumping) {
                 bool isTouchingThisCloud = physics::collisionHelper(player, cloud, physics::pixelPerfectCollision, quadtree);
                 if (isTouchingThisCloud) {
                     touchingCloud = true;
@@ -327,7 +326,7 @@ void gamePlayScene::handleGameEvents() {
 
     //Update falling state based on whether the player is touching any cloud
     FlagSystem::gameScene1Flags.playerFalling = !touchingCloud;
-    FlagSystem::gameScene1Flags.playerJumping = (MetaComponents::spacePressedElapsedTime > 0); 
+    FlagSystem::gameScene1Flags.playerJumping = MetaComponents::spacePressedElapsedTime > 0.0f; 
     FlagSystem::gameScene1Flags.sceneEnd = !player->getMoveState();
 } 
 
@@ -338,7 +337,9 @@ void gamePlayScene::handleSceneFlags(){
     if(FlagSystem::gameScene1Flags.sceneEnd){
         if(backgroundMusic) backgroundMusic->setVolume(Constants::BACKGROUNDMUSIC_ENDINGVOLUME); 
         button1->setVisibleState(true);
-        button1->setPosition({player->getSpritePos().x, player->getSpritePos().y - 400});   
+        
+        button1->setPosition({player->getSpritePos().x, player->getSpritePos().y - 400});  
+        std::cout << button1->getSpritePos().x << " " << button1->getSpritePos().y << std::endl; 
     }
 }
 

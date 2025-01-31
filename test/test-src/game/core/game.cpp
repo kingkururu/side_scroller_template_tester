@@ -92,7 +92,7 @@ void GameManager::handleEventInput() {
             }
         }
         if (event.type == sf::Event::KeyReleased){
-            FlagSystem::flagEvents.flagKeyReleased(); 
+            FlagSystem::flagEvents.flagKeyReleased(); // for some reason this can't go inside resetFlags
         }
         if (event.type == sf::Event::MouseButtonPressed) {
             FlagSystem::flagEvents.mouseClicked = true;
@@ -104,7 +104,6 @@ void GameManager::handleEventInput() {
 }
 
 void GameManager::resetFlags(){
-   // FlagSystem::flagEvents.flagKeyReleased(); 
     FlagSystem::flagEvents.mouseClicked = false;
 }
 

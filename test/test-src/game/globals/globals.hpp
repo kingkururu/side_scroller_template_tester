@@ -227,6 +227,7 @@ namespace FlagSystem {
             sPressed = false;
             dPressed = false;
             bPressed = false;
+            spacePressed = false;
         }
     };
 
