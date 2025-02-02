@@ -399,14 +399,15 @@ void gamePlayScene::draw() {
     
         drawAnythingVisible(background);
         drawAnythingVisible(tileMap1);
-        drawAnythingVisible(introText);
-        drawAnythingVisible(scoreText);
-        drawAnythingVisible(endingText);
         drawAnythingVisible(button1);
         for (auto& cloud : cloudBlue) drawAnythingVisible(cloud);
         for (auto& cloud : cloudPurple) drawAnythingVisible(cloud);
         for (auto& coin : coins) drawAnythingVisible(coin);
         drawAnythingVisible(player);
+
+        drawAnythingVisible(introText);
+        drawAnythingVisible(scoreText);
+        drawAnythingVisible(endingText);
 
         window.display(); 
     } 

@@ -152,7 +152,7 @@ score_text:
   position:
     x: 500.0 # pixels 
     y: 100.0 # pixels 
-  color: "WHITE" # sf::Color
+  color: "CUSTOMCOLOR_LIGHTCORAL" # sf::Color
 
 # Music settings
 music:
