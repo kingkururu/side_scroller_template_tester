@@ -199,6 +199,82 @@ namespace physics{
     }
 
     template<typename ObjType1, typename ObjType2, typename CollisionType> // for sprite vs. sprite
+    bool collisionHelper(ObjType1&& obj1, ObjType2&& obj2, const CollisionType& collisionFunc, float timeElapsed = 0.0f, size_t counterIndex = 0){ // brute force check collision detection
+        // Check if obj1 and obj2 are valid pointers
+        if (!obj1) {
+            log_warning("First object is missing in collision detection");
+            return false;
+        }
+        if (!obj2) {
+            log_warning("Second object is missing in collision detection");
+            return false;
+        }
+
+        // Helper function for handling unique_ptr<DerivedSprite> or Sprite directly
+        auto getSprite = [](auto&& obj) -> auto& {
+            if constexpr (std::is_pointer_v<std::decay_t<decltype(obj)>>) {
+                return *obj; // Dereference unique_ptr or raw pointer
+            } else {
+                return obj; // Direct reference if it's an object
+            }
+        };
+
+        // Retrieve references to obj1 and obj2
+        auto& sprite1 = getSprite(std::forward<ObjType1>(obj1));
+        auto& sprite2 = getSprite(std::forward<ObjType2>(obj2));
+        sf::FloatRect bounds1 = sprite1->returnSpritesShape().getGlobalBounds();
+        sf::FloatRect bounds2 = sprite2->returnSpritesShape().getGlobalBounds();
+
+        // Object properties retrieval for collision checks
+        sf::Vector2f position1 = sprite1->getSpritePos();
+        float radius1 = sprite1->getRadius();
+        auto bitmask1 = sprite1->getBitmask(sprite1->getCurrIndex());
+        sf::Vector2f direction1 = sprite1->getDirectionVector();
+        float speed1 = sprite1->getSpeed();
+        sf::Vector2f acceleration1 = sprite1->getAcceleration();
+        sf::Vector2f size1; 
+        if (sprite1->isAnimated()) {
+            sf::IntRect rect1 = sprite1->getRects();
+            position1 = {sprite1->getSpritePos().x, sprite1->getSpritePos().y};
+            size1 = {static_cast<float>(rect1.width), static_cast<float>(rect1.height)};
+        } else {
+            size1 = {sprite1->returnSpritesShape().getGlobalBounds().width, sprite1->returnSpritesShape().getGlobalBounds().height};
+        }
+
+        sf::Vector2f position2 = sprite2->getSpritePos();
+        float radius2 = sprite2->getRadius();
+        auto bitmask2 = sprite2->getBitmask(sprite2->getCurrIndex());
+        sf::Vector2f direction2 = sprite2->getDirectionVector();
+        float speed2 = sprite2->getSpeed();
+        sf::Vector2f acceleration2 = sprite2->getAcceleration();
+        sf::Vector2f size2;
+        if (sprite2->isAnimated()) {
+            sf::IntRect rect2 = sprite2->getRects();
+            position2 = {bounds2.left + rect2.left, bounds2.top + rect2.top};
+            size2 = {static_cast<float>(rect2.width), static_cast<float>(rect2.height)};
+        } else {
+            size2 = {bounds2.width, bounds2.height};
+        }
+
+        // Collision calculations based on function signature
+        if constexpr (std::is_invocable_v<CollisionType, sf::Vector2f, float, sf::Vector2f, float>) { // circle collision 
+            return collisionFunc(position1, radius1, position2, radius2);
+        } else if constexpr (std::is_invocable_v<CollisionType, sf::Vector2f, sf::Vector2f, sf::Vector2f, sf::Vector2f>) { // bounding box collision
+            return collisionFunc(position1, size1, position2, size2);
+        } else if constexpr (std::is_invocable_v<CollisionType, sf::Vector2f, sf::Vector2f, float, sf::FloatRect, sf::Vector2f>) { // raycast precollision 
+            if (!cachedRaycastResult.counter) {
+                return collisionFunc(position1, direction1, speed1, bounds1, acceleration1, position2, direction2, speed2, bounds2, acceleration2);
+            } else if (timeElapsed > cachedRaycastResult.collisionTimes[counterIndex]) {
+                cachedRaycastResult.counter = 0;
+                return true;
+            }
+        } else if constexpr (std::is_invocable_v<CollisionType, std::shared_ptr<sf::Uint8[]>, sf::Vector2f, sf::Vector2f, std::shared_ptr<sf::Uint8[]>, sf::Vector2f, sf::Vector2f>) { // pixel perfect collision
+            return collisionFunc(bitmask1, position1, size1, bitmask2, position2, size2);
+        }
+        return false; // Default case
+    }
+
+    template<typename ObjType1, typename ObjType2, typename CollisionType> // for sprite vs. sprite
     bool collisionHelper(ObjType1&& obj1, ObjType2&& obj2, const CollisionType& collisionFunc, Quadtree& quadtree, float timeElapsed = 0.0f, size_t counterIndex = 0) { // for sprive vs. sprite
         // Check if obj1 and obj2 are valid pointers
         if (!obj1) {
@@ -228,7 +304,13 @@ namespace physics{
         sf::FloatRect bounds2 = sprite2->returnSpritesShape().getGlobalBounds();
         auto potentialColliders1 = quadtree.query(bounds1);
         auto potentialColliders2 = quadtree.query(bounds2);
-
+        
+        // if(potentialColliders1.empty()){
+        //     log_warning("no potential colliders for sprite 1");
+        // }
+        // if(potentialColliders2.empty()){
+        //     log_warning("no potential colliders for sprite 2");
+        // }
         // Only proceed if the quadtree query suggests a potential collision
         if (!potentialColliders1.empty() && !potentialColliders2.empty()) {
             for (const auto& collider1 : potentialColliders1) {
@@ -286,7 +368,7 @@ namespace physics{
                 }
             }
         }
-        log_warning("no collision applicable");
+     //   log_warning("no collision applicable");
         return false;  // No collision detected
     }
 }

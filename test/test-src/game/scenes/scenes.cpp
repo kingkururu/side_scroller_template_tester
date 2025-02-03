@@ -264,7 +264,7 @@ void gamePlayScene::handleGameEvents() {
     scoreText->getText().setString("Score: " + std::to_string(score));
 
     for(auto it = coins.begin(); it != coins.end(); ++it){
-        if(physics::collisionHelper(player, *it, physics::pixelPerfectCollision, quadtree)){
+        if(physics::collisionHelper(player, *it, physics::pixelPerfectCollision)){
             (*it)->setVisibleState(false);
             coinHitSound->returnSound().play();
             score += 50;
@@ -275,7 +275,7 @@ void gamePlayScene::handleGameEvents() {
     auto checkCloudCollisions = [&](const std::vector<std::unique_ptr<Cloud>>& clouds) {
         for (const auto& cloud : clouds) {
             if (player && cloud) {
-                bool isTouchingThisCloud = physics::collisionHelper(player, cloud, physics::pixelPerfectCollision, quadtree);
+                bool isTouchingThisCloud = physics::collisionHelper(player, cloud, physics::pixelPerfectCollision);
                 if (isTouchingThisCloud) {
                     touchingCloud = true;
 

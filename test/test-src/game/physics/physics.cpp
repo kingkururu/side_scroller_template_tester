@@ -16,14 +16,14 @@ namespace physics {
         try {
             std::vector<Sprite*> result;
             if (!bounds.intersects(area)) {
-               // log_info("Area does not intersect with the quadtree bounds at level " + std::to_string(level));
+                log_warning("Area does not intersect with the quadtree bounds at level " + std::to_string(level));
                 return result;
             }
 
             for (const auto& obj : objects) {
                 if (area.intersects(obj->returnSpritesShape().getGlobalBounds())) {
                     result.push_back(obj);
-                    // log_info("Sprite added to query result at level " + std::to_string(level));
+                    log_info("Sprite added to query result at level " + std::to_string(level));
                 }
             }
 
@@ -41,8 +41,7 @@ namespace physics {
 
     bool Quadtree::contains(const sf::FloatRect& bounds) const {
         try {
-            bool result = this->bounds.contains(bounds.left, bounds.top) &&
-                this->bounds.contains(bounds.left + bounds.width, bounds.top + bounds.height);
+            bool result = this->bounds.contains(bounds.left, bounds.top) && this->bounds.contains(bounds.left + bounds.width, bounds.top + bounds.height);
             log_info(result ? "Bounds are contained in the quadtree at level " + std::to_string(level) :
                             "Bounds are not contained in the quadtree at level " + std::to_string(level));
             return result;
