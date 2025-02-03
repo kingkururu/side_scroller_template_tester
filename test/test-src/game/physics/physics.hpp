@@ -96,7 +96,6 @@ namespace physics{
         } else if constexpr (std::is_invocable_v<MoveFunc, float, sf::Vector2f>){
             sprite->changePosition(moveFunc( speed, originalPos)); 
         }
-
         sprite->updatePos();  // Update sprite's position after applying the move function
     }
    
@@ -123,7 +122,7 @@ namespace physics{
     bool pixelPerfectCollision( const std::shared_ptr<sf::Uint8[]> &bitmask1, const sf::Vector2f &position1, const sf::Vector2f &size1,
                                 const std::shared_ptr<sf::Uint8[]> &bitmask2, const sf::Vector2f &position2, const sf::Vector2f &size2);  
     
-     struct CollisionData {
+    struct CollisionData {
         sf::Vector2f position;
         float radius;
         sf::Vector2f direction;
@@ -227,6 +226,8 @@ namespace physics{
         // Retrieve references to obj1 and obj2
         auto& sprite1 = getSprite(std::forward<ObjType1>(obj1));
         auto& sprite2 = getSprite(std::forward<ObjType2>(obj2));
+        CollisionData data1 = extractCollisionData(sprite1);
+        CollisionData data2 = extractCollisionData(sprite2);
 
         auto collisionLambda = [&timeElapsed, counterIndex](const CollisionData& data1, const CollisionData& data2, 
                                                                                   CollisionType collisionFunc) {
@@ -254,14 +255,10 @@ namespace physics{
             for (const auto& collider1 : potentialColliders1) {
                 for (const auto& collider2 : potentialColliders2) {
                     if (collider1 == collider2) continue;  // Skip self-collision checks
-                        CollisionData data1 = extractCollisionData(sprite1);
-                        CollisionData data2 = extractCollisionData(sprite2);
                         return collisionLambda(data1, data2, collisionFunc);
                 }
             }
         } else {
-            CollisionData data1 = extractCollisionData(sprite1);
-            CollisionData data2 = extractCollisionData(sprite2);
             return collisionLambda(data1, data2, collisionFunc);
         }
         return false; // default 
