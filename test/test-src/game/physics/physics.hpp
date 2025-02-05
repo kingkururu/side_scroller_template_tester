@@ -9,7 +9,6 @@
 #include <math.h>
 #include <functional> 
 #include <utility>
-#include <variant>
 
 #include "../globals/globals.hpp" 
 #include "../../test-assets/sprites/sprites.hpp" 
@@ -158,11 +157,8 @@ namespace physics{
     template<typename ObjType1, typename ObjType2>
     bool collisionHelper(ObjType1&& obj1, ObjType2&& obj2) { // for sprive vs. non-sprite
         auto getSprite = [](auto&& obj1) -> auto& {
-            if constexpr (std::is_pointer_v<std::decay_t<decltype(obj1)>>) {
-                return *obj1; // Dereference unique_ptr or raw pointer
-            } else {
-                return obj1; // Direct reference if it's an object
-            }
+            if constexpr (std::is_pointer_v<std::decay_t<decltype(obj1)>>) return *obj1; // Dereference unique_ptr or raw pointer
+            else return obj1; // Direct reference if it's an object
         };
 
         // Retrieve references to obj1 and obj2
@@ -172,7 +168,6 @@ namespace physics{
         if constexpr (std::is_same_v<std::decay_t<ObjType2>, sf::Vector2f>) { // mouse 
             sf::Vector2f position2(static_cast<float>(obj2.x), static_cast<float>(obj2.y));
             sf::Vector2f size2(1.0f, 1.0f);
-
             return boundingBoxCollision(data1.position, data1.size, position2, size2);
         } 
         else if constexpr (std::is_same_v<std::decay_t<ObjType2>, sf::View>) { // view
@@ -180,7 +175,6 @@ namespace physics{
             sf::Vector2f viewSize = obj2.getSize();
             sf::Vector2f position2(viewCenter.x - viewSize.x / 2, viewCenter.y - viewSize.y / 2);
             sf::Vector2f size2(viewSize.x, viewSize.y);
-
             return boundingBoxCollision(data1.position, data1.size, position2, size2);
         } 
         else { // tilemap 
@@ -195,10 +189,8 @@ namespace physics{
 
             if constexpr (std::is_same_v<std::decay_t<decltype(tileMap)>, TileMap>) {
                 sf::Vector2f position2 = tileMap.getTileMapPosition();
-                sf::Vector2f size2(
-                    tileMap.getTileWidth() * static_cast<float>(tileMap.getTileMapWidth()),
-                    tileMap.getTileHeight() * static_cast<float>(tileMap.getTileMapHeight())
-                );
+                sf::Vector2f size2( tileMap.getTileWidth() * static_cast<float>(tileMap.getTileMapWidth()),
+                                    tileMap.getTileHeight() * static_cast<float>(tileMap.getTileMapHeight()) );
                 return boundingBoxCollision(data1.position, data1.size, position2, size2);
             }
         }
@@ -229,8 +221,7 @@ namespace physics{
         CollisionData data1 = extractCollisionData(sprite1);
         CollisionData data2 = extractCollisionData(sprite2);
 
-        auto collisionLambda = [&timeElapsed, counterIndex](const CollisionData& data1, const CollisionData& data2, 
-                                                                                  CollisionType collisionFunc) {
+        auto collisionLambda = [&timeElapsed, counterIndex](const CollisionData& data1, const CollisionData& data2, CollisionType collisionFunc) {
             if constexpr (std::is_invocable_v<CollisionType, sf::Vector2f, float, sf::Vector2f, float>) { // circle collision
                 return collisionFunc(data1.position, data1.radius, data2.position, data2.radius);
             } else if constexpr (std::is_invocable_v<CollisionType, sf::Vector2f, sf::Vector2f, sf::Vector2f, sf::Vector2f>) { // bounding box collision
@@ -252,10 +243,13 @@ namespace physics{
             auto potentialColliders1 = quadtree->query(sprite1->returnSpritesShape().getGlobalBounds());
             auto potentialColliders2 = quadtree->query(sprite2->returnSpritesShape().getGlobalBounds());
 
+            if (potentialColliders1.empty() || potentialColliders2.empty()) return false;
+
             for (const auto& collider1 : potentialColliders1) {
                 for (const auto& collider2 : potentialColliders2) {
                     if (collider1 == collider2) continue;  // Skip self-collision checks
-                        return collisionLambda(data1, data2, collisionFunc);
+                    
+                    return collisionLambda(data1, data2, collisionFunc);
                 }
             }
         } else {
