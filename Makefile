@@ -101,3 +101,4 @@ clean:
 # Run tests
 test: $(TEST_TARGET) COPY_CONFIG
 	./$(TEST_TARGET)
+
