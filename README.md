@@ -1,5 +1,9 @@
+## Endless Jumping Game made from the Template I wrote
+Game play screenshots
+<img width="978" alt="Image" src="https://github.com/user-attachments/assets/cbb34d48-0453-499a-90f0-b6d77f721940" />
+<img width="971" alt="Image" src="https://github.com/user-attachments/assets/28d3cd23-aabd-43b7-b2ae-19dcaaafa242" />
 
-## SFML Game Template
+## Description of SFML Game Template
 
 This repository provides a foundational template for building 2D games using C++ and SFML. It's designed for basic game features like game loops, asset management, physics, and scene management. Built with Visual Studio Code, this setup should also work in other environments that support Makefile builds.
 
