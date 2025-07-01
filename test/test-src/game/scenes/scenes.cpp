@@ -264,7 +264,7 @@ void gamePlayScene::handleGameEvents() {
     scoreText->getText().setString("Score: " + std::to_string(score));
 
     for(auto it = coins.begin(); it != coins.end(); ++it){
-        if(physics::collisionHelper(player, *it, physics::pixelPerfectCollision)){
+        if(physics::collisionHelper(player, *it, physics::boundingBoxCollision)){
             (*it)->setVisibleState(false);
             coinHitSound->returnSound().play();
             score += 50;
