@@ -49,8 +49,8 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/kingkururu/sfml_game_template
-   cd sfml_game_template
+   git clone https://github.com/kingkururu/projectName
+   cd projectName (location will be different)
    ```
 
 2. **Build the Project**:
@@ -66,9 +66,6 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
    ```bash
    # Run the tester
    make test
-   
-   # Run the actual game
-   make run
    ```
 
 4. **Clean the Build**:
@@ -98,7 +95,7 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 ## 📁 Project Structure
 
 ```
-/sfml_game_template
+/side_scroller_template_tester
 │
 ├── .vscode/                   # VSCode settings and configurations
 │
