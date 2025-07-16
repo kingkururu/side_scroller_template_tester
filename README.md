@@ -1,5 +1,4 @@
 ## Game Template Tester
-Game play screenshots
 <img width="978" alt="Image" src="https://github.com/user-attachments/assets/cbb34d48-0453-499a-90f0-b6d77f721940" />
 <img width="971" alt="Image" src="https://github.com/user-attachments/assets/28d3cd23-aabd-43b7-b2ae-19dcaaafa242" />
 
