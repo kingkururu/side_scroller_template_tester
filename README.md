@@ -48,8 +48,8 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/kingkururu/projectName
-   cd projectName (location will be different)
+   git clone https://github.com/kingkururu/side_scroller_template_tester 
+   cd path/findThisproject (location will be different)
    ```
 
 2. **Built and Run the Game**:
@@ -86,8 +86,6 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 
 ```
 /side_scroller_template_tester
-│
-├── .vscode/                  # VSCode settings and configurations
 │
 ├── src/                      # Source files
 │   ├── main.cpp              # Main entry point of the game
@@ -128,7 +126,6 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 
 ### 4. Sprites and 2D Components
 - **Adding Sprites**: Use the Sprite class to manage game visuals
-- **Visibility Checks**: Template includes functions to set sprites visible if within bounds
 - **Collision Handling**: Use Physics::checkCollision(sprite1, sprite2, helperFunctionType) for collision detection
 
 ### 5. Physics and Movement
@@ -144,7 +141,6 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 - **SFML**: For graphics, windowing, and audio handling
 - **spdlog**: Logging support for debug and error tracking
 - **fmt**: Text formatting library for logging
-- **catch2**: For testing purposes
 
 ## Key Learning Outcomes
 
@@ -157,24 +153,7 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 - Performance optimization techniques
 - Modular architecture design
 
-## Advanced Features
-
-- **New Window Class**: Multiple view support with YAML configuration
-- **New Globals Class**: Merged constants and flags with YAML reading
-- **New Tiles Class**: Enhanced tile and tilemap management
-- **New Logging Class**: Console and file logging with FMT, SPDLOG, and multi-threading
-- **Physics Updates**: Quadtree implementation and enhanced helper methods
-
 ## Usage Notes
 
 This template does not include a UI layer for customization. Changes must be made directly in the code to implement specific game functionality. The framework is designed entirely for code-driven development, allowing maximum flexibility for 2D game creation.
-
-## License
-
-This project is licensed under the MIT License.
-
----
-
-*Note: Adjust file paths, include dependencies, and modify sections based on your environment, as some systems may require manual setup for Homebrew or custom paths.*
-
 
