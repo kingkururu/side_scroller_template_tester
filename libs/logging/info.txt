@@ -1,9 +1,0 @@
-[2025-02-07 16:37:22.052] [info_logger] [info] 	Constants initialized 
-[2025-02-07 16:37:22.054] [info_logger] [info] 	Game initialized
-[2025-02-07 16:37:22.054] [info_logger] [info] Background created
-[2025-02-07 16:37:22.054] [info_logger] [info] Music initialized successfully, volume is 100.000000
-[2025-02-07 16:37:22.054] [info_logger] [info] Sound initialized successfully
-[2025-02-07 16:37:22.054] [info_logger] [info] text initialized successully
-[2025-02-07 16:37:22.054] [info_logger] [info] Background created
-[2025-02-07 16:37:24.153] [info_logger] [info] 	Game Ended
-
