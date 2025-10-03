@@ -52,7 +52,7 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
    cd path/findThisproject (location will be different)
    ```
 
-2. **Built and Run the Game**:
+2. **Build and Run the Game**:
    ```bash
    # Run the tester
    make test
