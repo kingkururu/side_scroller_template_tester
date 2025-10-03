@@ -52,22 +52,13 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
    cd projectName (location will be different)
    ```
 
-2. **Build the Project**:
-   ```bash
-   make
-   ```
-   This will:
-   - Install Homebrew if missing
-   - Install SFML, spdlog, and fmt via Homebrew
-   - Compile and build the project executable
-
-3. **Run the Game**:
+2. **Built and Run the Game**:
    ```bash
    # Run the tester
    make test
    ```
 
-4. **Clean the Build**:
+3. **Clean the Build**:
    ```bash
    make clean
    ```
